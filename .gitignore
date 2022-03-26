@@ -1,0 +1,8 @@
+coc/
+configstore/
+flutter/
+iterm2/
+micro/
+gh/hosts.yml
+
+.DS_Store

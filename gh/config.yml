@@ -1,0 +1,7 @@
+git_protocol: https
+editor: nvim
+prompt: enabled
+pager: cat
+aliases:
+    co: pr checkout
+http_unix_socket:
