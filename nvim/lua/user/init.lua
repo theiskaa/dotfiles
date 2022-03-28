@@ -127,6 +127,14 @@ local config = {
     vim.cmd("hi clear SignColumn")
     vim.cmd("hi clear StatusLine")
 
+    -- Set custom command key-maps
+    vim.cmd [[
+      command! Q :q
+      command! W :w
+      command! Wq :wq
+      command! WQ :wq
+    ]]
+
     -- Set autocommands
     vim.cmd [[
       augroup packer_conf
