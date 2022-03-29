@@ -102,21 +102,25 @@ local config = {
     local map = vim.api.nvim_set_keymap
     local set = vim.opt
 
-    -- Set options
-    set.relativenumber = true
-
     -- Set key bindings
     map("n", "<C-s>", ":w!<CR>", opts)
     map("n", "<C-s>", ":w!<CR>", opts)
-    map("n", "fd", ":DartFmt<CR>", opts)
     map("n", "<CR>", ":nohlsearch<CR>", opts)
     map("n", "fsv", ":vs<CR>", opts)
     map("n", "fsh", ":split horizontal<CR>", opts)
-    map("n", ",fa", ":FlutterRun<CR>", opts)
-    map("n", ",fr", ":FlutterHotReload<CR>", opts)
-    map("n", ",fR", ":FlutterHotRestart<CR>", opts)
-    map("n", ",fq", ":FlutterQuit<CR>", opts)
-    map("n", "<cmd>W", ":w!<CR>", opts)
+
+    -- Dart/Flutter command remaps
+    map("n", "fd", ":DartFmt<CR>", opts)
+    map("n", "<leader>fa", ":FlutterRun<CR>", opts)
+    map("n", "<leader>fr", ":FlutterHotReload<CR>", opts)
+    map("n", "<leader>fR", ":FlutterHotRestart<CR>", opts)
+    map("n", "<leader>fq", ":FlutterQuit<CR>", opts)
+
+    -- lsp-independent renamer.
+    map("n", "<leader>mc", ":%s// /g", opts)
+
+    -- JSON formatter.
+    map("n", "<leader>fj", ":%!python -m json.tool<CR>", opts)
 
     -- Set transparency = ON.
     vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
