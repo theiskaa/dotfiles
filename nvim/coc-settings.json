@@ -1,0 +1,53 @@
+{
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json"
+            ]
+        },
+        "dart": {
+            "args": [
+                " change this to the path of analysis_server",
+                "/usr/local/opt/dart/libexec/bin/snapshots/analysis_server.dart.snapshot",
+                "--lsp",
+                "--client-id",
+                "vim",
+                "--client-version",
+                "coc.nvim"
+            ],
+            "command": "dart",
+            "filetypes": [
+                "dart"
+            ],
+            "trace.server": "verbose"
+        },
+        "golang": {
+            "command": "gopls",
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.mod"
+            ]
+        },
+        "rust": {
+            "command": "rust-analyzer",
+            "filetypes": [
+                "rust"
+            ],
+            "rootPatterns": [
+                "Cargo.toml"
+            ]
+        }
+    }
+}
