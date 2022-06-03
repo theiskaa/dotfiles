@@ -37,7 +37,7 @@ nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 
 " Flutter & Dart actions.
-nnoremap <leader>,fd <cmd>DartFmt <CR>
+nnoremap fd <cmd>DartFmt <CR>
 nnoremap <leader>,fa :FlutterRun <CR>
 nnoremap <leader>,fq :FlutterQuit <CR>
 nnoremap <leader>,fr :FlutterHotReload <CR>

@@ -1,7 +1,6 @@
 " General configurations.
 syntax on
 set cursorline
-set cursorcolumn
 set relativenumber
 set noerrorbells
 set tabstop=4 softtabstop=4
