@@ -29,12 +29,18 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'kdheepak/vim-one'
 Plug 'itchyny/lightline.vim' 
 Plug 'bluz71/vim-moonfly-colors'
-Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mhartington/formatter.nvim'
 Plug 'owickstrom/vim-colors-paramount'
+" color schemes 
+Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
+Plug 'davidosomething/vim-colors-meh' " meh - let g:meh_pandoc_enabled = 1
+Plug 'sainnhe/gruvbox-material'
+Plug 'folke/tokyonight.nvim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
 
 " Go(lang)
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -45,5 +51,19 @@ Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 
-" Configure compe
-set completeopt=menu,menuone,noselect
+" Rust plugin customization
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
