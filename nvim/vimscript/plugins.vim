@@ -16,6 +16,7 @@ Plug 'mbbill/undotree'
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'jbyuki/venn.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'Raimondi/delimitMate'
 
 Plug 'ms-jpq/coq_nvim'
 Plug 'hrsh7th/nvim-cmp'
@@ -38,6 +39,8 @@ Plug 'morhetz/gruvbox'
 Plug 'davidosomething/vim-colors-meh' " meh - let g:meh_pandoc_enabled = 1
 Plug 'sainnhe/gruvbox-material'
 Plug 'folke/tokyonight.nvim'
+Plug 'jonstoler/werewolf.vim'
+Plug 'axvr/photon.vim'
 
 " Rust
 Plug 'rust-lang/rust.vim'
