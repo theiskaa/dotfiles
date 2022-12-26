@@ -41,6 +41,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'folke/tokyonight.nvim'
 Plug 'jonstoler/werewolf.vim'
 Plug 'axvr/photon.vim'
+Plug 'projekt0n/github-nvim-theme'
 
 " Rust
 Plug 'rust-lang/rust.vim'
