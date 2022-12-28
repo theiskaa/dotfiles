@@ -16,6 +16,7 @@ vim.g.maplocalleader = ','
 
 vim.cmd [[command! W :w]]
 vim.cmd [[command! Q :q]]
+vim.cmd [[command! Wq :wq]]
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -76,6 +77,10 @@ require('packer').startup(function(use)
   }
 
   use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use {
+    "windwp/nvim-autopairs", -- Auto Pairs
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -470,6 +475,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.cursorcolumn = true
+vim.opt.clipboard = "unnamedplus"
 
 -- File tree configuration
 vim.g.loaded_netrw = 1
