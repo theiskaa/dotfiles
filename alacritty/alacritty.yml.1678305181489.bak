@@ -4,10 +4,10 @@ live_config_reload: true
 window:
   opacity: 0.92
   padding:
-    x: 20
-    y: 18
+    x: 18
+    y: 16
   dynamic_padding: false
-  decorations: Buttonless
+  decorations: transparent
 
 key_bindings:
   # Rename the current tmux window

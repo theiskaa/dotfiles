@@ -7,7 +7,7 @@ window:
     x: 20
     y: 18
   dynamic_padding: false
-  decorations: Buttonless
+  decorations: transparent
 
 key_bindings:
   # Rename the current tmux window
@@ -68,32 +68,30 @@ selection:
 mouse:
   hide_when_typing: true
 colors:
-  # Default colors
+  name: Ashes (dark)
+  author: Chris Kempson
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
-
-  # Normal colors
+    background: "#1c2023"
+    foreground: "#c7ccd1"
+  cursor:
+    text: "#1c2023"
+    cursor: "#c7ccd1"
   normal:
-    black: '#282828'
-    red: '#cc241d'
-    green: '#98971a'
-    yellow: '#d79921'
-    blue: '#458588'
-    magenta: '#b16286'
-    cyan: '#689d6a'
-    white: '#a89984'
-
-  # Bright colors
+    black: "#1c2023"
+    red: "#c7ae95"
+    green: "#95c7ae"
+    yellow: "#aec795"
+    blue: "#ae95c7"
+    magenta: "#c795ae"
+    cyan: "#95aec7"
+    white: "#c7ccd1"
   bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
-theme: Gruvbox-Dark
+    black: "#747c84"
+    red: "#c7ae95"
+    green: "#95c7ae"
+    yellow: "#aec795"
+    blue: "#ae95c7"
+    magenta: "#c795ae"
+    cyan: "#95aec7"
+    white: "#f3f4f5"
+theme: Ashes.dark

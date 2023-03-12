@@ -4,10 +4,10 @@ live_config_reload: true
 window:
   opacity: 0.92
   padding:
-    x: 20
-    y: 18
+    x: 18
+    y: 16
   dynamic_padding: false
-  decorations: Buttonless
+  decorations: transparent
 
 key_bindings:
   # Rename the current tmux window
@@ -68,32 +68,31 @@ selection:
 mouse:
   hide_when_typing: true
 colors:
-  # Default colors
+  name: Atelierheath (dark)
+  author: Chris Kempson
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
-
-  # Normal colors
+    background: "#1b181b"
+    foreground: "#ab9bab"
+  cursor:
+    text: "#1b181b"
+    cursor: "#ab9bab"
   normal:
-    black: '#282828'
-    red: '#cc241d'
-    green: '#98971a'
-    yellow: '#d79921'
-    blue: '#458588'
-    magenta: '#b16286'
-    cyan: '#689d6a'
-    white: '#a89984'
-
-  # Bright colors
+    black: "#1b181b"
+    red: "#ca402b"
+    green: "#379a37"
+    yellow: "#bb8a35"
+    blue: "#516aec"
+    magenta: "#7b59c0"
+    cyan: "#159393"
+    white: "#ab9bab"
   bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
-theme: Gruvbox-Dark
+    black: "#776977"
+    red: "#ca402b"
+    green: "#379a37"
+    yellow: "#bb8a35"
+    blue: "#516aec"
+    magenta: "#7b59c0"
+    cyan: "#159393"
+    white: "#f7f3f7"
+theme: Atelierheath.dark
+ght
