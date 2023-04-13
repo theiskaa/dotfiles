@@ -6,27 +6,17 @@ return require('packer').startup(function(use)
 
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
-	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({
-	  'ellisonleao/gruvbox.nvim',
-	  as = 'gruvbox',
-	  config = function()
-		  vim.cmd('colorscheme gruvbox')
-	  end
-  })
+  use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
+  use 'folke/tokyonight.nvim'
+  use({ 'sainnhe/gruvbox-material', as = 'gruvboxmaterial' })
 
   use({
       "folke/trouble.nvim",
       config = function()
-          require("trouble").setup {
-              icons = false,
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-          }
+          require("trouble").setup { icons = false }
       end
   })
 
@@ -84,9 +74,43 @@ return require('packer').startup(function(use)
   use 'fatih/vim-go' -- Golang
   use 'dart-lang/dart-vim-plugin' -- Dart
   use {
-    'akinsho/flutter-tools.nvim',
-    opt = true,
-    module = 'flutter-tools',
-    requires = {'nvim-lua/plenary.nvim'}
+    "akinsho/flutter-tools.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+    -- require("plugin.flutter-tools.config")
+    -- require("plugin.flutter-tools.keymap")
+    -- ft = 'dart',
+    -- event = "BufRead pubspec.yaml",
+       require('flutter-tools').setup({
+          debugger = {
+            enabled = true,
+            run_via_dap = true,
+            exception_breakpoints = {},
+          },
+          outline = { auto_open = false },
+          decorations = {
+            statusline = { device = true, app_version = true },
+          },
+          widget_guides = { enabled = true, debug = false },
+          dev_log = { enabled = false, open_cmd = 'tabedit' },
+          lsp = {
+            color = {
+              enabled = true,
+              background = true,
+              virtual_text = false,
+            },
+            settings = {
+              showTodos = true,
+              renameFilesWithClasses = 'prompt',
+              updateImportsOnRename = true,
+              completeFunctionCalls = true,
+              lineLength = 100,
+            },
+          },
+        })
+    end,
+    lazy = false,
+    dev = true,
+    dependencies = { 'nvim-lua/plenary.nvim' }
   }
 end)

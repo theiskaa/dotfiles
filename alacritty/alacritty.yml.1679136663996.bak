@@ -1,3 +1,4 @@
+# cSpell:words alacritty lfcd
 live_config_reload: true
 
 window:
@@ -67,35 +68,30 @@ selection:
 mouse:
   hide_when_typing: true
 colors:
-  # Default colors
+  name: Ashes (dark)
+  author: Chris Kempson
   primary:
-    background: '#181818'
-    foreground: '#d8d8d8'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
+    background: "#1c2023"
+    foreground: "#c7ccd1"
   cursor:
-    text: '#d8d8d8'
-    cursor: '#d8d8d8'
-
-  # Normal colors
+    text: "#1c2023"
+    cursor: "#c7ccd1"
   normal:
-    black: '#181818'
-    red: '#ab4642'
-    green: '#a1b56c'
-    yellow: '#f7ca88'
-    blue: '#7cafc2'
-    magenta: '#ba8baf'
-    cyan: '#86c1b9'
-    white: '#d8d8d8'
-
-  # Bright colors
+    black: "#1c2023"
+    red: "#c7ae95"
+    green: "#95c7ae"
+    yellow: "#aec795"
+    blue: "#ae95c7"
+    magenta: "#c795ae"
+    cyan: "#95aec7"
+    white: "#c7ccd1"
   bright:
-    black: '#585858'
-    red: '#ab4642'
-    green: '#a1b56c'
-    yellow: '#f7ca88'
-    blue: '#7cafc2'
-    magenta: '#ba8baf'
-    cyan: '#86c1b9'
-    white: '#f8f8f8'
-theme: Base16-Default-Dark
+    black: "#747c84"
+    red: "#c7ae95"
+    green: "#95c7ae"
+    yellow: "#aec795"
+    blue: "#ae95c7"
+    magenta: "#c795ae"
+    cyan: "#95aec7"
+    white: "#f3f4f5"
+theme: Ashes.dark

@@ -9,13 +9,7 @@ lsp.ensure_installed({
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+    settings = {}
 })
 
 local cmp = require('cmp')
@@ -64,9 +58,3 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
-
-if fn.executable("flutter") == 1 then
-    -- local config = make_config()
-    -- nvim_lsp["dartls"].setup(config)
-    require('flutter-tools').setup({})
-end
