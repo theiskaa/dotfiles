@@ -11,5 +11,5 @@ function ColorMyPencils(color)
 
 end
 
-ColorMyPencils('gruvbox-material') --> catppuccin, onedark
+ColorMyPencils('gruvbox') --> gruvbox, gruvbox-material, onedark, onedark_dark
 
