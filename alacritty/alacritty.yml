@@ -67,30 +67,30 @@ selection:
 mouse:
   hide_when_typing: true
 colors:
-  name: astromouse
-  author: ""
+  name: Default (dark)
+  author: Chris Kempson
   primary:
-    background: "#000000"
-    foreground: "#ffffff"
+    background: "#151515"
+    foreground: "#d0d0d0"
   cursor:
-    text: "#000000"
-    cursor: "#ffffff"
+    text: "#151515"
+    cursor: "#d0d0d0"
   normal:
-    black: "#1c1c1c"
-    red: "#d770af"
-    green: "#9acc79"
-    yellow: "#d0d26b"
-    blue: "#77b6c5"
-    magenta: "#a488d9"
-    cyan: "#7fcab3"
-    white: "#8d8d8d"
+    black: "#151515"
+    red: "#ac4142"
+    green: "#90a959"
+    yellow: "#f4bf75"
+    blue: "#6a9fb5"
+    magenta: "#aa759f"
+    cyan: "#75b5aa"
+    white: "#d0d0d0"
   bright:
-    black: "#3d3a3a"
-    red: "#d28abf"
-    green: "#8fb676"
-    yellow: "#c8bc45"
-    blue: "#8fa7b9"
-    magenta: "#bd89de"
-    cyan: "#6ec2a8"
-    white: "#dad3d3"
-theme: Astromouse
+    black: "#505050"
+    red: "#ac4142"
+    green: "#90a959"
+    yellow: "#f4bf75"
+    blue: "#6a9fb5"
+    magenta: "#aa759f"
+    cyan: "#75b5aa"
+    white: "#f5f5f5"
+theme: Default.dark
