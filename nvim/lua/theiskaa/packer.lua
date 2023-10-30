@@ -1,7 +1,6 @@
 vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   use {
@@ -51,18 +50,19 @@ return require('packer').startup(function(use)
 	  }
   }
 
-  use("folke/zen-mode.nvim")
-  use("github/copilot.vim")
-  use("eandrju/cellular-automaton.nvim")
-  use("laytan/cloak.nvim")
-  use 'xiyaowong/nvim-transparent' -- Easy transparency
+  use "folke/zen-mode.nvim"
+  use "github/copilot.vim"
+  use "eandrju/cellular-automaton.nvim"
+  use "laytan/cloak.nvim"
+  use 'xiyaowong/nvim-transparent'
+  use "sindrets/diffview.nvim"
 
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      'nvim-tree/nvim-web-devicons',
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    tag = 'nightly'
   }
 
   use {
@@ -71,16 +71,12 @@ return require('packer').startup(function(use)
 
   }
 
-  use 'fatih/vim-go' -- Golang
-  use 'dart-lang/dart-vim-plugin' -- Dart
+  use 'fatih/vim-go'
+  use 'dart-lang/dart-vim-plugin'
   use {
     "akinsho/flutter-tools.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-    -- require("plugin.flutter-tools.config")
-    -- require("plugin.flutter-tools.keymap")
-    -- ft = 'dart',
-    -- event = "BufRead pubspec.yaml",
        require('flutter-tools').setup({
           debugger = {
             enabled = true,
