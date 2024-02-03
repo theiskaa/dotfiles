@@ -12,3 +12,5 @@ raycast/
 github-copilot/
 
 .DS_Store
+tx_template.json
+zed/

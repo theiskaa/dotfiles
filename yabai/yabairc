@@ -47,5 +47,7 @@ yabai -m rule --add app="^Raycast Preferences$" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
 yabai -m rule --add app="^ChatGPT$" manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^WhatsApp$" manage=off
 
-echo "yabai configuration loaded.."
+echo "iss.yabai configuration loaded.."

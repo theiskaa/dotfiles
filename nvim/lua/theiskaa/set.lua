@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+vim.o.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -39,6 +39,7 @@ vim.o.smartcase = true
 vim.o.textwidth = 100 -- Char per line
 vim.wo.signcolumn = 'yes'
 vim.wo.cursorline = true
+vim.wo.cursorcolumn = true
 vim.opt.clipboard = "unnamedplus"
 
 -- File tree configuration

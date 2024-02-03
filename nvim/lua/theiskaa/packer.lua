@@ -4,14 +4,14 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
-  use({ 'sainnhe/gruvbox-material', as = 'gruvboxmaterial' })
   use 'navarasu/onedark.nvim'
   use 'olimorris/onedarkpro.nvim'
+  use 'sainnhe/gruvbox-material'
+  use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
 
   use({
       "folke/trouble.nvim",
@@ -21,11 +21,11 @@ return require('packer').startup(function(use)
   })
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
-  use("nvim-treesitter/playground")
-  use("theprimeagen/harpoon")
-  use("theprimeagen/refactoring.nvim")
-  use("mbbill/undotree")
-  use("nvim-treesitter/nvim-treesitter-context");
+  use "nvim-treesitter/playground"
+  use "theprimeagen/harpoon"
+  use "theprimeagen/refactoring.nvim"
+  use "mbbill/undotree"
+  use "nvim-treesitter/nvim-treesitter-context"
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
