@@ -8,6 +8,9 @@ require("nvim-tree").setup({
       },
     },
   },
+  git = {
+    ignore = false
+  },
   renderer = {
     add_trailing = false,
     group_empty = false,
@@ -67,7 +70,7 @@ require("nvim-tree").setup({
     symlink_destination = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
 

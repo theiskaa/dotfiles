@@ -1,7 +1,7 @@
 live_config_reload: true
 
 window:
-  opacity: 0.70
+  opacity: 0.94
   padding:
     x: 20
     y: 18
@@ -54,7 +54,7 @@ key_bindings:
   # Break the current tmux pane out of the tmux window
   - { key: T, mods: Command|Shift, chars: "\x02!" }
 
-  # Kill the current tmux pane (and window if last pane)
+  # Kill the current tmux pane (and window if last panel
   - { key: W, mods: Command, chars: "\x02x" }
 
   # Toggle the zoom state of the current tmux pane

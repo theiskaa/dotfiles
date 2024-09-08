@@ -1,5 +1,5 @@
 call plug#begin()
-" File searching 
+" File searching
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'natebosch/vim-lsc'
@@ -28,12 +28,12 @@ Plug 'hrsh7th/nvim-cmp'
 
 " Appearance
 Plug 'kdheepak/vim-one'
-Plug 'itchyny/lightline.vim' 
+Plug 'itchyny/lightline.vim'
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mhartington/formatter.nvim'
 Plug 'owickstrom/vim-colors-paramount'
-" color schemes 
+" color schemes
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'davidosomething/vim-colors-meh' " meh - let g:meh_pandoc_enabled = 1
