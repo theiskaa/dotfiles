@@ -108,6 +108,9 @@ return require('packer').startup(function(use)
     end,
     lazy = false,
     dev = true,
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim',
+    },
   }
 end)

@@ -1,14 +1,14 @@
 # focus window
-shift - h : yabai -m window --focus west
-shift - j : yabai -m window --focus south
-shift - k : yabai -m window --focus north
-shift - l : yabai -m window --focus east
+shift + cmd - h : yabai -m window --focus west
+shift + cmd - j : yabai -m window --focus south
+shift + cmd - k : yabai -m window --focus north
+shift + cmd - l : yabai -m window --focus east
 
 # move managed window
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east
+shift + ctrl - h : yabai -m window --warp west
+shift + ctrl - j : yabai -m window --warp south
+shift + ctrl - k : yabai -m window --warp north
+shift + ctrl - l : yabai -m window --warp east
 
 # rotate tree
 cmd + shift - r : yabai -m space --rotate 90
@@ -28,17 +28,6 @@ cmd - e : yabai -m window --toggle split
 
 # balance size of windows
 shift + cmd - 0 : yabai -m space --balance
-
-# move window and focus desktop
-shift + cmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
-shift + cmd - 2 : yabai -m window --space 2; yabai -m space --focus 2
-shift + cmd - 3 : yabai -m window --space 3; yabai -m space --focus 3
-shift + cmd - 4 : yabai -m window --space 4; yabai -m space --focus 4
-shift + cmd - 5 : yabai -m window --space 5; yabai -m space --focus 5
-shift + cmd - 6 : yabai -m window --space 6; yabai -m space --focus 6
-shift + cmd - 7 : yabai -m window --space 7; yabai -m space --focus 7
-shift + cmd - 8 : yabai -m window --space 8; yabai -m space --focus 8
-shift + cmd - 9 : yabai -m window --space 9; yabai -m space --focus 9
 
 # fast focus desktop
 shift - tab : yabai -m space --focus recent
