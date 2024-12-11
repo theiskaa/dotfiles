@@ -1,6 +1,0 @@
-{
-  "coc.preferences.formatOnSaveFiletypes": [
-    "dart",
-    "rust",
-  ]
-}
