@@ -1,12 +1,20 @@
 live_config_reload: true
 
 window:
-  opacity: 1
+  opacity: 0.99
   padding:
     x: 10
     y: 10
   dynamic_padding: false
   decorations: None
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+mouse: # clickable urls
+  hints:
+    modifiers: Control
 
 key_bindings:
   # Rename the current tmux window
@@ -59,10 +67,6 @@ key_bindings:
 
   # Toggle the zoom state of the current tmux pane
   - { key: Z, mods: Command, chars: "\x02z" }
-
-selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
-  save_to_clipboard: true
 
 mouse:
   hide_when_typing: true
