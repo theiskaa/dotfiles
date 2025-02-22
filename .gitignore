@@ -11,8 +11,10 @@ Wondershare/
 raycast/
 github-copilot/
 wireshark/
+solana/
 
-.DS_Store
 tx_template.json
 zed/
 yarn
+
+.DS_Store

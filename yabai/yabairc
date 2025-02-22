@@ -52,5 +52,6 @@ yabai -m rule --add app="^WhatsApp$" manage=off
 yabai -m rule --add app="^Hubstaff$" manage=off
 yabai -m rule --add app="^Terminal$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Discord$" manage=off
 
 echo "iss.yabai configuration loaded.."
