@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
 
   use 'navarasu/onedark.nvim'
   use 'olimorris/onedarkpro.nvim'
-  use 'sainnhe/gruvbox-material'
+  use 'f4z3r/gruvbox-material.nvim'
   use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
   use 'Yazeed1s/minimal.nvim'
 
