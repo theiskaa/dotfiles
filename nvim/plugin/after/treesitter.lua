@@ -1,6 +1,13 @@
+-- Treesitter Configuration
+-- Advanced syntax highlighting and code analysis
+
 require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust", "dart", "go", "javascript", "typescript" },
+  ensure_installed = {
+    "c", "lua", "rust", "go",
+    "javascript", "typescript", "html", "css", "json",
+    "dart",
+    "vim", "markdown", "bash"
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -9,6 +16,7 @@ require'nvim-treesitter.configs'.setup {
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
 
+  -- Consistent text highlighting
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
@@ -19,5 +27,20 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-}
 
+  -- Code indentation based on syntax
+  indent = {
+    enable = true
+  },
+
+  -- Incremental selection based on syntax tree
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}

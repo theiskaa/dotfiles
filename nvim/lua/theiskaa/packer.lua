@@ -8,11 +8,10 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use 'navarasu/onedark.nvim'
-  use 'olimorris/onedarkpro.nvim'
   use 'f4z3r/gruvbox-material.nvim'
   use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
   use 'Yazeed1s/minimal.nvim'
+  use 'huyvohcmc/atlas.vim'
 
   use({
       "folke/trouble.nvim",
@@ -33,9 +32,9 @@ return require('packer').startup(function(use)
 	  branch = 'v1.x',
 	  requires = {
 		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},
 		  {'williamboman/mason.nvim'},
 		  {'williamboman/mason-lspconfig.nvim'},
+		  {'neovim/nvim-lspconfig'},
 
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},
