@@ -2,8 +2,10 @@
 window-padding-x = 10
 window-padding-y = 10
 macos-titlebar-style = hidden
-background-opacity = 0.88
+background-opacity = 1
 background-blur = 15
+
+theme = "cga"
 
 # Fonts
 font-size = 12
@@ -12,33 +14,6 @@ font-thicken
 
 # Mouse settings
 mouse-hide-while-typing = true
-
-# Colors (Default dark theme)
-background = "#151515"
-foreground = "#d0d0d0"
-cursor-color = "#d0d0d0"
-cursor-text = "#151515"
-
-# Normal colors
-palette = 0=#151515
-palette = 1=#ac4142
-palette = 2=#90a959
-palette = 3=#f4bf75
-palette = 4=#6a9fb5
-palette = 5=#aa759f
-palette = 6=#75b5aa
-palette = 7=#d0d0d0
-
-# Bright colors
-palette = 8=#505050
-palette = 9=#ac4142
-palette = 10=#90a959
-palette = 11=#f4bf75
-palette = 12=#6a9fb5
-palette = 13=#aa759f
-palette = 14=#75b5aa
-palette = 15=#f5f5f5
-
 
 # Tmux keybindings
 # Rename window
