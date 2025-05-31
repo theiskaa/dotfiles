@@ -42,16 +42,17 @@ yabai -m rule --add app="^Pika$" manage=off
 yabai -m rule --add app="^balenaEtcher$" manage=off
 yabai -m rule --add app="^Creative Cloud$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
-yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Raycast Preferences$" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
 yabai -m rule --add app="^ChatGPT$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^WhatsApp$" manage=off
-yabai -m rule --add app="^Hubstaff$" manage=off
 yabai -m rule --add app="^Terminal$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Discord$" manage=off
+yabai -m rule --add app="^Signal$" manage=off
 
 echo "iss.yabai configuration loaded.."
+
+osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'

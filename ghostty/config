@@ -2,10 +2,13 @@
 window-padding-x = 10
 window-padding-y = 10
 macos-titlebar-style = hidden
-background-opacity = 1
+background-opacity = 0.99
 background-blur = 15
 
-theme = "cga"
+theme = "flexoki-dark"
+# theme = "hybrid" # Soft Light Dark
+# theme = "flexoki-dark" # Soft Dark
+# theme = "cga" # Dark
 
 # Fonts
 font-size = 12

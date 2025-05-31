@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Gruvbox Material P Dark",
+    "workbench.colorTheme": "Default Dark Modern",
     "window.commandCenter": true,
     "files.autoSave": "afterDelay",
     "kotlin.languageServer.enabled": false,
@@ -118,5 +118,5 @@
                 "workbench.action.findInFiles"
             ]
         }
-    ],
+    ]
 }
