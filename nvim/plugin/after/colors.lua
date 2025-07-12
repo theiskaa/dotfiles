@@ -14,10 +14,21 @@ require('gruvbox-material').setup({
     },
 })
 
+require('vscode').setup({
+    transparent = true,
+    italic_comments = true,
+    underline_links = true,
+    disable_nvimtree_bg = true,
+    terminal_colors = true,
+    color_overrides = {
+        vscLineNumber = '#FFFFFF',
+    },
+})
 
 -- Available Themes:
 -- 1. gruvbox          (configured)
 -- 2. gruvbox-material (configured)
+-- 3. vscode           (configured)
 -- 3. minimal          (not configured)
 -- 4. atlas            (not configured)
 function SetTheme(color)

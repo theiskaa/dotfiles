@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
   use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
   use 'Yazeed1s/minimal.nvim'
   use 'huyvohcmc/atlas.vim'
+  use 'Mofiqul/vscode.nvim'
 
   use({
       "folke/trouble.nvim",
@@ -65,11 +66,7 @@ return require('packer').startup(function(use)
     tag = 'nightly'
   }
 
-  use {
-    "windwp/nvim-autopairs", -- Auto Pairs
-    config = function() require("nvim-autopairs").setup {} end
-
-  }
+  use "windwp/nvim-autopairs" -- Auto Pairs (configured in lsp.lua)
 
   use 'fatih/vim-go'
   use 'dart-lang/dart-vim-plugin'
