@@ -24,6 +24,7 @@ require('mason-lspconfig').setup({
     handlers = {
         lsp.default_setup,
     },
+    automatic_enable = false,
 })
 
 -- Apply recommended LSP settings
@@ -125,3 +126,73 @@ lspconfig.gopls.setup({
 })
 
 lsp.setup()
+
+-- Configure nvim-cmp for autocompletion
+local cmp = require('cmp')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'buffer' },
+        { name = 'path' },
+    })
+})
+
+-- Integrate nvim-autopairs with nvim-cmp
+cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+)
+
+-- Setup nvim-autopairs with better configuration
+require('nvim-autopairs').setup({
+    check_ts = true,
+    ts_config = {
+        lua = {'string','source'},
+        javascript = {'string','template_string'},
+    },
+    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+    fast_wrap = {
+        map = '<M-e>',
+        chars = { '{', '[', '(', '"', "'" },
+        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
+        offset = 0,
+        end_key = '$',
+        keys = 'qwertyuiopzxcvbnmasdfghjkl',
+        check_comma = true,
+        highlight = 'PmenuSel',
+        highlight_grey = 'LineNr'
+    },
+})
