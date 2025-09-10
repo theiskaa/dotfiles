@@ -111,9 +111,17 @@ return require('packer').startup(function(use)
     use 'dart-lang/dart-vim-plugin'
     use {
         "akinsho/flutter-tools.nvim",
-        requires = "nvim-lua/plenary.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "stevearc/dressing.nvim"
+        },
         config = function()
-            require('flutter-tools').setup({
+            local flutter_tools_ok, flutter_tools = pcall(require, 'flutter-tools')
+            if not flutter_tools_ok then
+                return
+            end
+            
+            flutter_tools.setup({
                 debugger = {
                     enabled = true,
                     run_via_dap = true,
@@ -140,15 +148,6 @@ return require('packer').startup(function(use)
                     },
                 },
             })
-        end,
-        lazy = false,
-        dev = true,
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'stevearc/dressing.nvim',
-        },
-        dependencies = {
-            'nvim-lualine-plenary'
-        }
+        end
     }
 end)

@@ -1,7 +1,19 @@
-local lsp = require('lsp-zero')
+-- Check if lsp-zero is available
+local lsp_zero_ok, lsp = pcall(require, 'lsp-zero')
+if not lsp_zero_ok then
+    vim.notify("lsp-zero not found", vim.log.levels.ERROR)
+    return
+end
+
+-- Check if mason is available
+local mason_ok, mason = pcall(require, 'mason')
+if not mason_ok then
+    vim.notify("mason not found", vim.log.levels.ERROR)
+    return
+end
 
 -- Setup Mason for LSP server management
-require('mason').setup({
+mason.setup({
     ui = {
         border = 'rounded',
         icons = {
@@ -214,7 +226,7 @@ local on_attach = function(client, bufnr)
 
     -- Workspace
     vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
-    
+
     -- Format (LazyVim style)
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
         vim.lsp.buf.format({ async = true })
@@ -263,12 +275,28 @@ lspconfig.gopls.setup({
 lsp.setup()
 
 -- Configure nvim-cmp for autocompletion
-local cmp = require('cmp')
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp_ok, cmp = pcall(require, 'cmp')
+if not cmp_ok then
+    vim.notify("nvim-cmp not found", vim.log.levels.ERROR)
+    return
+end
 
--- Load friendly-snippets
-require('luasnip.loaders.from_vscode').lazy_load()
-local luasnip = require('luasnip')
+local autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
+if not autopairs_ok then
+    vim.notify("nvim-autopairs not found", vim.log.levels.WARN)
+end
+
+-- Load snippets safely
+local luasnip_ok, luasnip = pcall(require, 'luasnip')
+if luasnip_ok then
+    -- Load friendly-snippets
+    local vscode_loader_ok, _ = pcall(require, 'luasnip.loaders.from_vscode')
+    if vscode_loader_ok then
+        require('luasnip.loaders.from_vscode').lazy_load()
+    end
+else
+    vim.notify("LuaSnip not found", vim.log.levels.WARN)
+end
 
 cmp.setup({
     snippet = {
@@ -316,7 +344,7 @@ cmp.setup({
                 Operator = "󰆕",
                 TypeParameter = "",
             }
-            
+
             vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
@@ -334,9 +362,9 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ 
+        ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
-            select = false 
+            select = false
         }),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -370,29 +398,36 @@ cmp.setup({
     },
 })
 
--- Integrate nvim-autopairs with nvim-cmp
-cmp.event:on(
-    'confirm_done',
-    cmp_autopairs.on_confirm_done()
-)
+-- Integrate nvim-autopairs with nvim-cmp if available
+if autopairs_ok then
+    cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+    )
+end
 
--- Setup nvim-autopairs with better configuration
-require('nvim-autopairs').setup({
-    check_ts = true,
-    ts_config = {
-        lua = {'string','source'},
-        javascript = {'string','template_string'},
-    },
-    disable_filetype = { "TelescopePrompt", "spectre_panel" },
-    fast_wrap = {
-        map = '<M-e>',
-        chars = { '{', '[', '(', '"', "'" },
-        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
-        offset = 0,
-        end_key = '$',
-        keys = 'qwertyuiopzxcvbnmasdfghjkl',
-        check_comma = true,
-        highlight = 'PmenuSel',
-        highlight_grey = 'LineNr'
-    },
-})
+-- Setup nvim-autopairs with better configuration if available
+if autopairs_ok then
+    local autopairs_main_ok, autopairs = pcall(require, 'nvim-autopairs')
+    if autopairs_main_ok then
+        autopairs.setup({
+            check_ts = true,
+            ts_config = {
+                lua = {'string','source'},
+                javascript = {'string','template_string'},
+            },
+            disable_filetype = { "TelescopePrompt", "spectre_panel" },
+            fast_wrap = {
+                map = '<M-e>',
+                chars = { '{', '[', '(', '"', "'" },
+                pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
+                offset = 0,
+                end_key = '$',
+                keys = 'qwertyuiopzxcvbnmasdfghjkl',
+                check_comma = true,
+                highlight = 'PmenuSel',
+                highlight_grey = 'LineNr'
+            },
+        })
+    end
+end
