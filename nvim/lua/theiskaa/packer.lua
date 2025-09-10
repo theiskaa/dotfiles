@@ -58,13 +58,49 @@ return require('packer').startup(function(use)
   use 'xiyaowong/nvim-transparent'
   use "sindrets/diffview.nvim"
 
+  -- Neo-tree file explorer (LazyVim's default)
   use {
-    'nvim-tree/nvim-tree.lua',
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
     requires = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    tag = 'nightly'
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+      "s1n7ax/nvim-window-picker",
+    }
   }
+
+  -- Window picker for neo-tree
+  use "s1n7ax/nvim-window-picker"
+
+  -- Beautiful UI plugins
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+
+
+  use "rcarriga/nvim-notify" -- Beautiful notifications
+  use "stevearc/dressing.nvim" -- Better vim.ui interfaces
+
+  -- Enhanced syntax highlighting and context
+  use "nvim-treesitter/nvim-treesitter-refactor"
+  use "RRethy/vim-illuminate" -- Highlight other uses of word under cursor
+
+  -- Better quickfix and location list
+  use "kevinhwang91/nvim-bqf"
+
+
+  -- Which key for keybinding help
+  use "folke/which-key.nvim"
+
+
+  -- Indent guides
+  use "lukas-reineke/indent-blankline.nvim"
+
+  -- Color highlighter
+  use "norcalli/nvim-colorizer.lua"
+
 
   use "windwp/nvim-autopairs" -- Auto Pairs (configured in lsp.lua)
 
