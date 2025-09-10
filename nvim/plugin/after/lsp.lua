@@ -12,19 +12,131 @@ require('mason').setup({
     }
 })
 
+-- Enhanced capabilities for autocompletion
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+}
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+    }
+}
+
+-- LSP server configurations with enhanced settings
+local servers = {
+    lua_ls = {
+        settings = {
+            Lua = {
+                runtime = { version = "LuaJIT" },
+                workspace = {
+                    checkThirdParty = false,
+                    library = {
+                        vim.env.VIMRUNTIME,
+                        "${3rd}/luv/library",
+                        "${3rd}/busted/library",
+                    }
+                },
+                completion = { callSnippet = "Replace" },
+                diagnostics = { globals = { "vim" } },
+                hint = { enable = true },
+                telemetry = { enable = false },
+            },
+        },
+    },
+    gopls = {
+        settings = {
+            gopls = {
+                gofumpt = true,
+                codelenses = {
+                    gc_details = false,
+                    generate = true,
+                    regenerate_cgo = true,
+                    run_govulncheck = true,
+                    test = true,
+                    tidy = true,
+                    upgrade_dependency = true,
+                    vendor = true,
+                },
+                hints = {
+                    assignVariableTypes = true,
+                    compositeLiteralFields = true,
+                    compositeLiteralTypes = true,
+                    constantValues = true,
+                    functionTypeParameters = true,
+                    parameterNames = true,
+                    rangeVariableTypes = true,
+                },
+                analyses = {
+                    fieldalignment = true,
+                    nilness = true,
+                    unusedparams = true,
+                    unusedwrite = true,
+                    useany = true,
+                },
+                usePlaceholders = true,
+                completeUnimported = true,
+                staticcheck = true,
+                directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+                semanticTokens = true,
+            },
+        },
+    },
+    pyright = {
+        settings = {
+            python = {
+                analysis = {
+                    typeCheckingMode = "basic",
+                },
+            },
+        },
+    },
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                cargo = { allFeatures = true },
+                checkOnSave = { command = "clippy" },
+            },
+        },
+    },
+    tsserver = {
+        settings = {
+            typescript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "literal",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayVariableTypeHints = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                },
+            },
+        },
+    },
+}
+
 -- Configure which LSP servers to install
 require('mason-lspconfig').setup({
-    ensure_installed = {
-        'lua_ls',
-        'gopls',
-        'pyright',
-        'rust_analyzer',
-        'ast_grep',
-    },
+    ensure_installed = vim.tbl_keys(servers),
     handlers = {
-        lsp.default_setup,
+        function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            server.on_attach = on_attach
+            require("lspconfig")[server_name].setup(server)
+        end,
     },
-    automatic_enable = false,
 })
 
 -- Apply recommended LSP settings
@@ -33,20 +145,31 @@ lsp.preset('recommended')
 -- Configure LSP logging (avoid verbose logs in normal usage)
 vim.lsp.set_log_level('warn')
 
--- Configure diagnostic display settings
+-- Configure diagnostic display (LazyVim style)
 vim.diagnostic.config({
-    virtual_text = true,      -- Show diagnostics as virtual text
-    signs = true,             -- Show signs in the sign column
-    update_in_insert = false, -- Don't update diagnostics in insert mode
-    underline = true,         -- Underline text with issues
-    severity_sort = true,     -- Sort by severity
+    underline = true,
+    update_in_insert = false,
+    virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
+    },
+    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.INFO] = " ",
+        },
+    },
     float = {
         focusable = false,
-        style = 'minimal',
-        border = 'rounded',
-        source = 'always',
-        header = '',
-        prefix = '',
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
     },
 })
 
@@ -66,27 +189,39 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
--- Configure keybindings when an LSP is attached to a buffer
+-- Configure keybindings when an LSP is attached to a buffer (LazyVim style)
 local on_attach = function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
+    local opts = { buffer = bufnr, silent = true }
 
-    -- Go to definition and documentation
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    -- Navigation (LazyVim keybinds)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 
-    -- Symbol and diagnostic navigation
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    -- Diagnostics (LazyVim style)
+    vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
-    -- Code actions and references
-    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+    -- Code actions (LazyVim style)
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 
-    -- Help while typing
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    -- Workspace
+    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+    
+    -- Format (LazyVim style)
+    vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+        vim.lsp.buf.format({ async = true })
+    end, opts)
+
+    -- Document symbols
+    vim.keymap.set("n", "<leader>cs", vim.lsp.buf.document_symbol, opts)
 end
 
 -- Configure specific LSP servers
@@ -131,25 +266,83 @@ lsp.setup()
 local cmp = require('cmp')
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
+-- Load friendly-snippets
+require('luasnip.loaders.from_vscode').lazy_load()
+local luasnip = require('luasnip')
+
 cmp.setup({
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
         end,
     },
     window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+        },
+        documentation = {
+            border = "rounded",
+        },
+    },
+    formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+            local kind_icons = {
+                Text = "󰉿",
+                Method = "󰆧",
+                Function = "󰊕",
+                Constructor = "",
+                Field = "󰜢",
+                Variable = "󰀫",
+                Class = "󰠱",
+                Interface = "",
+                Module = "",
+                Property = "󰜢",
+                Unit = "󰑭",
+                Value = "󰎠",
+                Enum = "",
+                Keyword = "󰌋",
+                Snippet = "",
+                Color = "󰏘",
+                File = "󰈙",
+                Reference = "󰈇",
+                Folder = "󰉋",
+                EnumMember = "",
+                Constant = "󰏿",
+                Struct = "󰙅",
+                Event = "",
+                Operator = "󰆕",
+                TypeParameter = "",
+            }
+            
+            vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+            vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                luasnip = "[Snippet]",
+                buffer = "[Buffer]",
+                path = "[Path]",
+            })[entry.source.name]
+            return vim_item
+        end,
     },
     mapping = cmp.mapping.preset.insert({
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ 
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false 
+        }),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
+            elseif luasnip.locally_jumpable(1) then
+                luasnip.jump(1)
             else
                 fallback()
             end
@@ -157,17 +350,24 @@ cmp.setup({
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
         end, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'path' },
-    })
+        { name = 'nvim_lsp', priority = 1000 },
+        { name = 'luasnip', priority = 750 },
+        { name = 'buffer', priority = 500 },
+        { name = 'path', priority = 250 },
+    }),
+    experimental = {
+        ghost_text = {
+            hl_group = "CmpGhostText",
+        },
+    },
 })
 
 -- Integrate nvim-autopairs with nvim-cmp

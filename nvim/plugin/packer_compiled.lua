@@ -140,7 +140,7 @@ _G.packer_plugins = {
     url = "https://github.com/stevearc/dressing.nvim"
   },
   ["flutter-tools.nvim"] = {
-    config = { "\27LJ\2\nì\4\0\0\5\0\23\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0=\3\b\0025\3\n\0005\4\t\0=\4\v\3=\3\f\0025\3\r\0=\3\14\0025\3\15\0=\3\16\0025\3\18\0005\4\17\0=\4\19\0035\4\20\0=\4\21\3=\3\22\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\26completeFunctionCalls\2\26updateImportsOnRename\2\27renameFilesWithClasses\vprompt\14showTodos\2\15lineLength\3d\ncolor\1\0\2\rsettings\0\ncolor\0\1\0\3\17virtual_text\1\15background\2\fenabled\2\fdev_log\1\0\2\fenabled\1\ropen_cmd\ftabedit\18widget_guides\1\0\2\fenabled\2\ndebug\1\16decorations\15statusline\1\0\1\15statusline\0\1\0\2\16app_version\2\vdevice\2\foutline\1\0\1\14auto_open\1\rdebugger\1\0\6\fdev_log\0\18widget_guides\0\blsp\0\rdebugger\0\16decorations\0\foutline\0\26exception_breakpoints\1\0\3\26exception_breakpoints\0\16run_via_dap\2\fenabled\2\nsetup\18flutter-tools\frequire\0" },
+    config = { "\27LJ\2\nì\4\0\0\5\0\23\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0=\3\b\0025\3\n\0005\4\t\0=\4\v\3=\3\f\0025\3\r\0=\3\14\0025\3\15\0=\3\16\0025\3\18\0005\4\17\0=\4\19\0035\4\20\0=\4\21\3=\3\22\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\14showTodos\2\15lineLength\3d\26completeFunctionCalls\2\26updateImportsOnRename\2\27renameFilesWithClasses\vprompt\ncolor\1\0\2\ncolor\0\rsettings\0\1\0\3\17virtual_text\1\15background\2\fenabled\2\fdev_log\1\0\2\ropen_cmd\ftabedit\fenabled\1\18widget_guides\1\0\2\ndebug\1\fenabled\2\16decorations\15statusline\1\0\1\15statusline\0\1\0\2\vdevice\2\16app_version\2\foutline\1\0\1\14auto_open\1\rdebugger\1\0\6\rdebugger\0\blsp\0\16decorations\0\foutline\0\fdev_log\0\18widget_guides\0\26exception_breakpoints\1\0\3\26exception_breakpoints\0\16run_via_dap\2\fenabled\2\nsetup\18flutter-tools\frequire\0" },
     loaded = true,
     path = "/Users/i.shahverdiev/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
     url = "https://github.com/akinsho/flutter-tools.nvim"
@@ -285,6 +285,11 @@ _G.packer_plugins = {
     path = "/Users/i.shahverdiev/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
     url = "https://github.com/theprimeagen/refactoring.nvim"
   },
+  ["schemastore.nvim"] = {
+    loaded = true,
+    path = "/Users/i.shahverdiev/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
+    url = "https://github.com/b0o/schemastore.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/i.shahverdiev/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -329,14 +334,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: flutter-tools.nvim
-time([[Config for flutter-tools.nvim]], true)
-try_loadstring("\27LJ\2\nì\4\0\0\5\0\23\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0=\3\b\0025\3\n\0005\4\t\0=\4\v\3=\3\f\0025\3\r\0=\3\14\0025\3\15\0=\3\16\0025\3\18\0005\4\17\0=\4\19\0035\4\20\0=\4\21\3=\3\22\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\26completeFunctionCalls\2\26updateImportsOnRename\2\27renameFilesWithClasses\vprompt\14showTodos\2\15lineLength\3d\ncolor\1\0\2\rsettings\0\ncolor\0\1\0\3\17virtual_text\1\15background\2\fenabled\2\fdev_log\1\0\2\fenabled\1\ropen_cmd\ftabedit\18widget_guides\1\0\2\fenabled\2\ndebug\1\16decorations\15statusline\1\0\1\15statusline\0\1\0\2\16app_version\2\vdevice\2\foutline\1\0\1\14auto_open\1\rdebugger\1\0\6\fdev_log\0\18widget_guides\0\blsp\0\rdebugger\0\16decorations\0\foutline\0\26exception_breakpoints\1\0\3\26exception_breakpoints\0\16run_via_dap\2\fenabled\2\nsetup\18flutter-tools\frequire\0", "config", "flutter-tools.nvim")
-time([[Config for flutter-tools.nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\nC\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\nicons\1\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
+-- Config for: flutter-tools.nvim
+time([[Config for flutter-tools.nvim]], true)
+try_loadstring("\27LJ\2\nì\4\0\0\5\0\23\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0=\3\b\0025\3\n\0005\4\t\0=\4\v\3=\3\f\0025\3\r\0=\3\14\0025\3\15\0=\3\16\0025\3\18\0005\4\17\0=\4\19\0035\4\20\0=\4\21\3=\3\22\2B\0\2\1K\0\1\0\blsp\rsettings\1\0\5\14showTodos\2\15lineLength\3d\26completeFunctionCalls\2\26updateImportsOnRename\2\27renameFilesWithClasses\vprompt\ncolor\1\0\2\ncolor\0\rsettings\0\1\0\3\17virtual_text\1\15background\2\fenabled\2\fdev_log\1\0\2\ropen_cmd\ftabedit\fenabled\1\18widget_guides\1\0\2\ndebug\1\fenabled\2\16decorations\15statusline\1\0\1\15statusline\0\1\0\2\vdevice\2\16app_version\2\foutline\1\0\1\14auto_open\1\rdebugger\1\0\6\rdebugger\0\blsp\0\16decorations\0\foutline\0\fdev_log\0\18widget_guides\0\26exception_breakpoints\1\0\3\26exception_breakpoints\0\16run_via_dap\2\fenabled\2\nsetup\18flutter-tools\frequire\0", "config", "flutter-tools.nvim")
+time([[Config for flutter-tools.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
