@@ -46,11 +46,15 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Add diagnostics to location list" })
 
 -- Plugin specific mappings
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { silent = true, desc = "Toggle file explorer" })
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true, desc = "Toggle file explorer" })
 
 -- Diffview open/close
 vim.keymap.set('n', '<leader><leader>', ':DiffviewOpen<CR>', { silent = true, desc = "Open diff view" })
 vim.keymap.set('n', '<leader>z', ':DiffviewClose<CR>', { silent = true, desc = "Close diff view" })
+
+
+-- Notifications
+vim.keymap.set('n', '<leader>nd', function() require('notify').dismiss() end, { desc = "Dismiss notifications" })
 
 -- Stupid stuff
 vim.keymap.set("n", "<leader>s", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "Make it rain effect" })
