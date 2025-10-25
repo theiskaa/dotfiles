@@ -109,45 +109,13 @@ return require('packer').startup(function(use)
 
     use 'fatih/vim-go'
     use 'dart-lang/dart-vim-plugin'
+
+    -- Flutter/Dart support (configured in plugin/after/lsp.lua)
     use {
         "akinsho/flutter-tools.nvim",
         requires = {
             "nvim-lua/plenary.nvim",
             "stevearc/dressing.nvim"
-        },
-        config = function()
-            local flutter_tools_ok, flutter_tools = pcall(require, 'flutter-tools')
-            if not flutter_tools_ok then
-                return
-            end
-            
-            flutter_tools.setup({
-                debugger = {
-                    enabled = true,
-                    run_via_dap = true,
-                    exception_breakpoints = {},
-                },
-                outline = { auto_open = false },
-                decorations = {
-                    statusline = { device = true, app_version = true },
-                },
-                widget_guides = { enabled = true, debug = false },
-                dev_log = { enabled = false, open_cmd = 'tabedit' },
-                lsp = {
-                    color = {
-                        enabled = true,
-                        background = true,
-                        virtual_text = false,
-                    },
-                    settings = {
-                        showTodos = true,
-                        renameFilesWithClasses = 'prompt',
-                        updateImportsOnRename = true,
-                        completeFunctionCalls = true,
-                        lineLength = 100,
-                    },
-                },
-            })
-        end
+        }
     }
 end)

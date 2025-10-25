@@ -1,30 +1,54 @@
--- Check if lsp-zero is available
+-- Check if required plugins are available
 local lsp_zero_ok, lsp = pcall(require, 'lsp-zero')
 if not lsp_zero_ok then
     vim.notify("lsp-zero not found", vim.log.levels.ERROR)
     return
 end
 
--- Check if mason is available
 local mason_ok, mason = pcall(require, 'mason')
 if not mason_ok then
     vim.notify("mason not found", vim.log.levels.ERROR)
     return
 end
 
--- Setup Mason for LSP server management
-mason.setup({
-    ui = {
-        border = 'rounded',
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
+local cmp_ok, cmp = pcall(require, 'cmp')
+if not cmp_ok then
+    vim.notify("nvim-cmp not found", vim.log.levels.ERROR)
+    return
+end
+
+-- Configure LSP logging (reduce verbosity for performance)
+vim.lsp.set_log_level('warn')
+
+-- Configure diagnostic display
+vim.diagnostic.config({
+    underline = true,
+    update_in_insert = false,
+    virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
+    },
+    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.HINT] = "󰌶 ",
+            [vim.diagnostic.severity.INFO] = " ",
+        },
+    },
+    float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
 })
 
--- Enhanced capabilities for autocompletion
+-- Enhanced LSP capabilities for autocompletion
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -44,7 +68,54 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
--- LSP server configurations with enhanced settings
+-- Configure keybindings when an LSP is attached to a buffer
+-- IMPORTANT: This must be defined BEFORE mason-lspconfig.setup!
+local on_attach = function(client, bufnr)
+    local opts = { buffer = bufnr, silent = true }
+
+    -- Navigation
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+    -- Diagnostics
+    vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+    -- Code actions
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
+
+    -- Workspace
+    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+
+    -- Format
+    vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+        vim.lsp.buf.format({ async = true })
+    end, opts)
+
+    -- Document symbols
+    vim.keymap.set("n", "<leader>cs", vim.lsp.buf.document_symbol, opts)
+end
+
+mason.setup({
+    ui = {
+        border = 'rounded',
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+-- LSP server configurations
 local servers = {
     lua_ls = {
         settings = {
@@ -138,7 +209,7 @@ local servers = {
     },
 }
 
--- Configure which LSP servers to install
+-- Configure mason-lspconfig to install and setup LSP servers
 require('mason-lspconfig').setup({
     ensure_installed = vim.tbl_keys(servers),
     handlers = {
@@ -151,142 +222,48 @@ require('mason-lspconfig').setup({
     },
 })
 
--- Apply recommended LSP settings
-lsp.preset('recommended')
+-- ============================================================================
+-- FLUTTER/DART SETUP
+-- ============================================================================
 
--- Configure LSP logging (avoid verbose logs in normal usage)
-vim.lsp.set_log_level('warn')
-
--- Configure diagnostic display (LazyVim style)
-vim.diagnostic.config({
-    underline = true,
-    update_in_insert = false,
-    virtual_text = {
-        spacing = 4,
-        source = "if_many",
-        prefix = "●",
-    },
-    severity_sort = true,
-    signs = {
-        text = {
-            [vim.diagnostic.severity.ERROR] = "󰅚 ",
-            [vim.diagnostic.severity.WARN] = "󰀪 ",
-            [vim.diagnostic.severity.HINT] = "󰌶 ",
-            [vim.diagnostic.severity.INFO] = " ",
-        },
-    },
-    float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-    },
-})
-
--- Performance related settings
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation',
-        'detail',
-        'additionalTextEdits',
-    }
-}
-
--- Configure keybindings when an LSP is attached to a buffer (LazyVim style)
-local on_attach = function(client, bufnr)
-    local opts = { buffer = bufnr, silent = true }
-
-    -- Navigation (LazyVim keybinds)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-
-    -- Diagnostics (LazyVim style)
-    vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-    -- Code actions (LazyVim style)
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
-
-    -- Workspace
-    vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
-
-    -- Format (LazyVim style)
-    vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-        vim.lsp.buf.format({ async = true })
-    end, opts)
-
-    -- Document symbols
-    vim.keymap.set("n", "<leader>cs", vim.lsp.buf.document_symbol, opts)
-end
-
--- Configure specific LSP servers
-local lspconfig = require('lspconfig')
-
--- Lua LSP settings
-lspconfig.lua_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }, -- Recognize vim global in Neovim config
+-- Flutter-tools manages the Dart LSP server itself, so we configure it separately
+local flutter_tools_ok, flutter_tools = pcall(require, 'flutter-tools')
+if flutter_tools_ok then
+    flutter_tools.setup({
+        lsp = {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            color = {
+                enabled = true,
+                background = true,
+                virtual_text = false,
             },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
-            },
-            telemetry = {
-                enable = false,
+            settings = {
+                showTodos = true,
+                renameFilesWithClasses = 'prompt',
+                updateImportsOnRename = true,
+                completeFunctionCalls = true,
+                lineLength = 100,
+                enableSnippets = true,
+                enableSdkFormatter = true,
             },
         },
-    },
-})
-
-lspconfig.gopls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        gopls = {
-            analyses = {
-                unusedparams = true,
-            },
-            staticcheck = true,
+        debugger = {
+            enabled = true,
+            run_via_dap = true,
+            exception_breakpoints = {},
         },
-    },
-})
-
-lsp.setup()
-
--- Configure nvim-cmp for autocompletion
-local cmp_ok, cmp = pcall(require, 'cmp')
-if not cmp_ok then
-    vim.notify("nvim-cmp not found", vim.log.levels.ERROR)
-    return
+        outline = { auto_open = false },
+        decorations = {
+            statusline = { device = true, app_version = true },
+        },
+        widget_guides = { enabled = true, debug = false },
+        dev_log = { enabled = false, open_cmd = 'tabedit' },
+    })
+else
+    vim.notify("flutter-tools not found - Dart/Flutter LSP will not be available", vim.log.levels.WARN)
 end
 
-local autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
-if not autopairs_ok then
-    vim.notify("nvim-autopairs not found", vim.log.levels.WARN)
-end
-
--- Load snippets safely
 local luasnip_ok, luasnip = pcall(require, 'luasnip')
 if luasnip_ok then
     -- Load friendly-snippets
@@ -301,7 +278,9 @@ end
 cmp.setup({
     snippet = {
         expand = function(args)
-            luasnip.lsp_expand(args.body)
+            if luasnip_ok then
+                luasnip.lsp_expand(args.body)
+            end
         end,
     },
     window = {
@@ -369,7 +348,7 @@ cmp.setup({
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.locally_jumpable(1) then
+            elseif luasnip_ok and luasnip.locally_jumpable(1) then
                 luasnip.jump(1)
             else
                 fallback()
@@ -378,7 +357,7 @@ cmp.setup({
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
+            elseif luasnip_ok and luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
             else
                 fallback()
@@ -398,16 +377,10 @@ cmp.setup({
     },
 })
 
--- Integrate nvim-autopairs with nvim-cmp if available
+local autopairs_ok, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
 if autopairs_ok then
-    cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-    )
-end
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
--- Setup nvim-autopairs with better configuration if available
-if autopairs_ok then
     local autopairs_main_ok, autopairs = pcall(require, 'nvim-autopairs')
     if autopairs_main_ok then
         autopairs.setup({
@@ -415,6 +388,7 @@ if autopairs_ok then
             ts_config = {
                 lua = {'string','source'},
                 javascript = {'string','template_string'},
+                dart = {'string'},
             },
             disable_filetype = { "TelescopePrompt", "spectre_panel" },
             fast_wrap = {
