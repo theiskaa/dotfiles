@@ -9,7 +9,7 @@ require("neo-tree").setup({
   window = {
     mappings = {
       ["<space>"] = "none",
-      ["w"] = "open_with_window_picker",
+      ["w"] = "none",
       ["Y"] = {
         function(state)
           local node = state.tree:get_node()
