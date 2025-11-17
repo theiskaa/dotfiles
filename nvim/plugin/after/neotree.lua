@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require("neo-tree").setup({
   sources = { "filesystem", "buffers", "git_status", "document_symbols" },
   open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
@@ -5,6 +8,7 @@ require("neo-tree").setup({
     bind_to_cwd = false,
     follow_current_file = { enabled = true },
     use_libuv_file_watcher = true,
+    hijack_netrw_behavior = "disabled",
   },
   window = {
     mappings = {

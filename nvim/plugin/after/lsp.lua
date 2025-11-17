@@ -20,6 +20,14 @@ end
 -- Configure LSP logging (reduce verbosity for performance)
 vim.lsp.set_log_level('warn')
 
+local notify = vim.notify
+vim.notify = function(msg, level, opts)
+    if type(msg) == "string" and msg:match("textDocument/didChange") and msg:match("dartls") then
+        return
+    end
+    notify(msg, level, opts)
+end
+
 -- Configure diagnostic display
 vim.diagnostic.config({
     underline = true,
@@ -233,6 +241,9 @@ if flutter_tools_ok then
         lsp = {
             on_attach = on_attach,
             capabilities = capabilities,
+            flags = {
+                debounce_text_changes = 500,
+            },
             color = {
                 enabled = true,
                 background = true,
@@ -242,7 +253,7 @@ if flutter_tools_ok then
                 showTodos = true,
                 renameFilesWithClasses = 'prompt',
                 updateImportsOnRename = true,
-                completeFunctionCalls = true,
+                completeFunctionCalls = false,
                 lineLength = 100,
                 enableSnippets = true,
                 enableSdkFormatter = true,
@@ -342,7 +353,7 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
+            behavior = cmp.ConfirmBehavior.Insert,
             select = false
         }),
         ['<Tab>'] = cmp.mapping(function(fallback)
