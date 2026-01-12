@@ -10,8 +10,6 @@ return require('packer').startup(function(use)
 
     use 'f4z3r/gruvbox-material.nvim'
     use({ 'ellisonleao/gruvbox.nvim', as = 'gruvbox' })
-    use 'Yazeed1s/minimal.nvim'
-    use 'huyvohcmc/atlas.vim'
     use 'Mofiqul/vscode.nvim'
 
     use({
@@ -55,7 +53,6 @@ return require('packer').startup(function(use)
     }
 
     use "folke/zen-mode.nvim"
-    use "github/copilot.vim"
     use "eandrju/cellular-automaton.nvim"
     use "laytan/cloak.nvim"
     use 'xiyaowong/nvim-transparent'
@@ -93,10 +90,8 @@ return require('packer').startup(function(use)
     -- Better quickfix and location list
     use "kevinhwang91/nvim-bqf"
 
-
     -- Which key for keybinding help
     use "folke/which-key.nvim"
-
 
     -- Indent guides
     use "lukas-reineke/indent-blankline.nvim"
