@@ -44,6 +44,38 @@ vim.opt.colorcolumn = "80"
 vim.wo.cursorline = true
 vim.wo.cursorcolumn = true
 
+-- Beautiful text rendering (like Helix)
+-- Conceal settings for better text display
+vim.o.conceallevel = 2
+vim.o.concealcursor = ""
+
+-- Better popup menu rendering
+vim.o.pumblend = 10  -- Transparency for popup menu
+vim.o.pumheight = 10  -- Maximum number of items in popup menu
+
+-- Better floating window rendering
+vim.o.winblend = 10  -- Transparency for floating windows
+
+-- Smooth scrolling (if supported)
+vim.o.smoothscroll = true
+
+-- Better line wrapping display
+vim.o.showbreak = "↪ "
+vim.o.breakindentopt = "shift:2"
+
+-- Better number column display
+vim.opt.numberwidth = 4
+
+-- Better syntax highlighting
+vim.o.synmaxcol = 500  -- Don't syntax highlight very long lines (improves performance)
+
+-- Better rendering performance
+vim.o.redrawtime = 1500  -- Time in milliseconds for redrawing the display
+vim.o.lazyredraw = false  -- Don't use lazy redraw (can cause rendering issues)
+
+-- Better cursor rendering
+vim.o.cursorlineopt = "both"  -- Highlight both line and number column
+
 -- System interaction
 vim.o.mouse = 'a' -- Enable mouse mode
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
