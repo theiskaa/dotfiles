@@ -1,0 +1,4 @@
+[[language]]
+name = "dart"
+formatter = { command = "dart", args = ["format", "--output=show"] }
+auto-format = true
