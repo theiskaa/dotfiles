@@ -83,6 +83,7 @@ h = "command_palette"
 "?" = "file_picker_in_current_directory"
 "/" = "search"
 q = "diagnostics_picker"
+x = ":buffer-close"
 space = "buffer_picker"
 
 [keys.normal.",".c]
