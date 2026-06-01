@@ -9,6 +9,21 @@ require("neo-tree").setup({
     follow_current_file = { enabled = true },
     use_libuv_file_watcher = true,
     hijack_netrw_behavior = "disabled",
+    filtered_items = {
+      visible = true,
+      hide_dotfiles = false,
+      hide_gitignored = false,
+      hide_hidden = false,
+      -- Build/dependency output: hidden even though everything else is visible.
+      never_show = {
+        "build",
+        ".fvm",
+        ".dart_tool",
+        "target",
+        ".next",
+        ".open-next",
+      },
+    },
   },
   window = {
     mappings = {

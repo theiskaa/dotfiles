@@ -1,7 +1,7 @@
 -- Main configuration entry point for theiskaa's Neovim setup
 require("theiskaa.set")
 require("theiskaa.remap")
-require("theiskaa.packer")
+require("theiskaa.lazy")
 
 -- Create autogroups
 local augroup = vim.api.nvim_create_augroup
