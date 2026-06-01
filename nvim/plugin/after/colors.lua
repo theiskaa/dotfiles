@@ -30,7 +30,7 @@ require('vscode').setup({
 -- 2. gruvbox-material (configured)
 -- 3. vscode           (configured)
 function SetTheme(color)
-    color = color or 'vscode'
+    color = color or 'gruvbox-material'
     vim.cmd.colorscheme(color)
 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
