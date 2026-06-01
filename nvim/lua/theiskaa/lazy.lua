@@ -146,7 +146,13 @@ require("lazy").setup({
 		"folke/which-key.nvim",
 		"lukas-reineke/indent-blankline.nvim",
 		"norcalli/nvim-colorizer.lua",
-		"windwp/nvim-autopairs",
+
+		-- Auto-pairs (LazyVim default; replaces nvim-autopairs)
+		{ "nvim-mini/mini.pairs", main = "mini.pairs", opts = {} },
+
+		-- Treesitter-aware commentstring for the built-in gc/gcc mappings
+		-- (handles JSX, embedded languages, etc.)
+		{ "folke/ts-comments.nvim", opts = {} },
 
 		"sindrets/diffview.nvim",
 		{

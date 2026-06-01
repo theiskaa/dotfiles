@@ -285,29 +285,5 @@ else
     vim.notify("flutter-tools not found - Dart/Flutter LSP will not be available", vim.log.levels.WARN)
 end
 
--- ============================================================================
--- Autopairs (blink.cmp handles completion-side bracket insertion natively)
--- ============================================================================
-local autopairs_ok, autopairs = pcall(require, "nvim-autopairs")
-if autopairs_ok then
-    autopairs.setup({
-        check_ts = true,
-        ts_config = {
-            lua = { "string", "source" },
-            javascript = { "string", "template_string" },
-            dart = { "string" },
-        },
-        disable_filetype = { "TelescopePrompt", "spectre_panel" },
-        fast_wrap = {
-            map = "<M-e>",
-            chars = { "{", "[", "(", '"', "'" },
-            pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-            offset = 0,
-            end_key = "$",
-            keys = "qwertyuiopzxcvbnmasdfghjkl",
-            check_comma = true,
-            highlight = "PmenuSel",
-            highlight_grey = "LineNr",
-        },
-    })
-end
+-- Autopairs (mini.pairs) and treesitter-aware commenting (ts-comments) are
+-- configured in their lazy specs in lua/theiskaa/lazy.lua.
