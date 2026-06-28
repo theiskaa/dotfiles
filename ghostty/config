@@ -28,6 +28,8 @@ mouse-hide-while-typing = true
 keybind = cmd+comma=text:\x02,
 
 # Select session
+# cmd+k defaults to clear_screen (menu item); release it.
+keybind = cmd+k=unbind
 keybind = cmd+key_k=text:\x02s
 
 # Select windows 1-9
@@ -49,6 +51,8 @@ keybind = cmd+bracket_left=text:\x02[
 keybind = shift+cmd+bracket_left=text:\x02p
 
 # Split panes
+# cmd+n is the macOS "New Window" menu item; release it so our binding fires.
+keybind = cmd+n=unbind
 keybind = shift+cmd+key_n=text:\x02%
 keybind = cmd+key_n=text:\x02\"
 
@@ -59,11 +63,19 @@ keybind = shift+cmd+bracket_right=text:\x02n
 keybind = cmd+key_s=text:\x1b:w\n
 
 # New window and break pane
+# cmd+t = "New Tab" menu item; shift+cmd+t defaults to undo. Release both.
+keybind = cmd+t=unbind
+keybind = shift+cmd+t=unbind
 keybind = cmd+key_t=text:\x02c
 keybind = shift+cmd+key_t=text:\x02!
 
 # Kill pane
+# cmd+w is the macOS "Close" menu item; the menu eats the key before our
+# physical binding runs, so unbind the logical trigger to release it.
+keybind = cmd+w=unbind
 keybind = cmd+key_w=text:\x02x
 
 # Toggle zoom
+# cmd+z defaults to undo (menu item); release it.
+keybind = cmd+z=unbind
 keybind = cmd+key_z=text:\x02z
