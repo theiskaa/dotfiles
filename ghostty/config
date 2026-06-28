@@ -19,46 +19,51 @@ font-thicken
 mouse-hide-while-typing = true
 
 # Tmux keybindings
+# NOTE: Ghostty 1.2.0 added default cmd+1..9 (and reworked key names to W3C
+# codes). Logical triggers like `cmd+1` no longer override Ghostty's own
+# defaults, so these use *physical* key names (digit_N, key_X, bracket_*,
+# comma) which take precedence and pass the byte through to tmux.
+
 # Rename window
-keybind = cmd+,=text:\x02,
+keybind = cmd+comma=text:\x02,
 
 # Select session
-keybind = cmd+k=text:\x02s
+keybind = cmd+key_k=text:\x02s
 
 # Select windows 1-9
-keybind = cmd+1=text:\x021
-keybind = cmd+2=text:\x022
-keybind = cmd+3=text:\x023
-keybind = cmd+4=text:\x024
-keybind = cmd+5=text:\x025
-keybind = cmd+6=text:\x026
-keybind = cmd+7=text:\x027
-keybind = cmd+8=text:\x028
-keybind = cmd+9=text:\x029
+keybind = cmd+digit_1=text:\x021
+keybind = cmd+digit_2=text:\x022
+keybind = cmd+digit_3=text:\x023
+keybind = cmd+digit_4=text:\x024
+keybind = cmd+digit_5=text:\x025
+keybind = cmd+digit_6=text:\x026
+keybind = cmd+digit_7=text:\x027
+keybind = cmd+digit_8=text:\x028
+keybind = cmd+digit_9=text:\x029
 
 # Switch to last session
-keybind = cmd+l=text:\x02L
-keybind = cmd+[=text:\x02[
+keybind = cmd+key_l=text:\x02L
+keybind = cmd+bracket_left=text:\x02[
 
 # Previous window
-keybind = shift+cmd+[=text:\x02p
+keybind = shift+cmd+bracket_left=text:\x02p
 
 # Split panes
-keybind = shift+cmd+n=text:\x02%
-keybind = cmd+n=text:\x02\"
+keybind = shift+cmd+key_n=text:\x02%
+keybind = cmd+key_n=text:\x02\"
 
 # Next window
-keybind = shift+cmd+]=text:\x02n
+keybind = shift+cmd+bracket_right=text:\x02n
 
 # Save in neovim
-keybind = cmd+s=text:\e:w\n
+keybind = cmd+key_s=text:\x1b:w\n
 
 # New window and break pane
-keybind = cmd+t=text:\x02c
-keybind = shift+cmd+t=text:\x02!
+keybind = cmd+key_t=text:\x02c
+keybind = shift+cmd+key_t=text:\x02!
 
 # Kill pane
-keybind = cmd+w=text:\x02x
+keybind = cmd+key_w=text:\x02x
 
 # Toggle zoom
-keybind = cmd+z=text:\x02z
+keybind = cmd+key_z=text:\x02z
