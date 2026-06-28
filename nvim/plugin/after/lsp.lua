@@ -230,11 +230,6 @@ if flutter_tools_ok then
 			flags = {
 				debounce_text_changes = 500,
 			},
-			color = {
-				enabled = true,
-				background = true,
-				virtual_text = false,
-			},
 			settings = {
 				showTodos = true,
 				renameFilesWithClasses = "prompt",
@@ -259,4 +254,18 @@ if flutter_tools_ok then
 	})
 else
 	vim.notify("flutter-tools not found - Dart/Flutter LSP will not be available", vim.log.levels.WARN)
+end
+
+-- Document colors for Dart: flutter-tools' lsp.color is deprecated on Neovim
+-- 0.12+, so drive the native provider instead (background swatches, no
+-- virtual text -- matching the old flutter-tools config).
+if vim.lsp.document_color and vim.lsp.document_color.enable then
+	vim.api.nvim_create_autocmd("LspAttach", {
+		callback = function(args)
+			local client = vim.lsp.get_client_by_id(args.data.client_id)
+			if client and client.name == "dartls" and client:supports_method("textDocument/documentColor") then
+				vim.lsp.document_color.enable(true, args.buf, { style = "background" })
+			end
+		end,
+	})
 end
