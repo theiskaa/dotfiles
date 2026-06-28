@@ -25,7 +25,9 @@ mouse-hide-while-typing = true
 # comma) which take precedence and pass the byte through to tmux.
 
 # Rename window
-keybind = cmd+comma=text:\x02,
+# cmd+, is reserved by macOS for the Settings menu (AppKit assigns it before
+# Ghostty sees the key), so use shift+cmd+, for the tmux rename instead.
+keybind = shift+cmd+comma=text:\x02,
 
 # Select session
 # cmd+k defaults to clear_screen (menu item); release it.
