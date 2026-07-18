@@ -1,0 +1,239 @@
+config-version = 2
+
+start-at-login = true
+auto-reload-config = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+focus-follows-mouse.enabled = false
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+key-mapping.preset = 'qwerty'
+
+gaps.inner.horizontal = 8
+gaps.inner.vertical   = 8
+gaps.outer.left       = 8
+gaps.outer.bottom     = 8
+gaps.outer.top        = 8
+gaps.outer.right      = 8
+
+# Keep these workspaces around even when empty so their slot/monitor is stable.
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+on-mode-changed = []
+after-startup-command = []
+
+# ==============================================================================
+# Main bindings
+# ==============================================================================
+[mode.main.binding]
+
+    # --- Focus window  (yabai: window --focus | skhd shift+cmd hjkl) -----------
+    shift-cmd-h = 'focus left'
+    shift-cmd-j = 'focus down'
+    shift-cmd-k = 'focus up'
+    shift-cmd-l = 'focus right'
+
+    # --- Move / warp window  (yabai: window --warp | skhd shift+ctrl hjkl) -----
+    shift-ctrl-h = 'move left'
+    shift-ctrl-j = 'move down'
+    shift-ctrl-k = 'move up'
+    shift-ctrl-l = 'move right'
+
+    # --- Fullscreen zoom  (yabai: window --toggle zoom-fullscreen | shift+cmd-f)
+    shift-cmd-f = 'fullscreen'
+
+    # --- Toggle split orientation  (yabai: window --toggle split | cmd-e) ------
+    # AeroSpace has no "rotate tree"; toggling tiles orientation is the analog.
+    cmd-e = 'layout tiles horizontal vertical'
+    # NOTE: no accordion binding on purpose — accordion "stacks" windows and
+    # looks like apps vanish to the background. If a workspace ever gets stuck
+    # stacked, press cmd-e (or Service mode -> r) to force it back to tiles.
+
+    # --- Balance window sizes  (yabai: space --balance | shift+cmd-0) ----------
+    shift-cmd-0 = 'balance-sizes'
+
+    # --- Resize focused window (yabai had none in skhd; convenient to have) ----
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    # --- Recent workspace  (yabai: space --focus recent) ----------------------
+    # Bound to alt-tab instead of shift-tab: a bare shift-tab would swallow
+    # reverse-tab inside every app. alt-tab is safe and unused by macOS here.
+    alt-tab = 'workspace-back-and-forth'
+
+    # --- Multi-monitor --------------------------------------------------------
+    # Send window to next monitor AND follow it (yabai: display next + focus | shift+cmd-m)
+    shift-cmd-m = 'move-node-to-monitor --wrap-around --focus-follows-window next'
+    # Move the whole current workspace to the next monitor.
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    # Jump focus between monitors.
+    shift-cmd-comma  = 'focus-monitor --wrap-around prev'
+    shift-cmd-period = 'focus-monitor --wrap-around next'
+
+    # --- Switch workspaces by keyboard  (THE fix for mouse-driven paging) ------
+    # These didn't exist in your yabai/skhd setup — this is why you had to use
+    # the trackpad. alt+<n> focuses, alt+shift+<n> throws the window there.
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+
+    alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+    alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+    alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+    alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+    alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+    alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+    alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+    alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+    alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+
+    # Cycle to the next/previous non-empty workspace without leaving home row.
+    alt-n = 'workspace --wrap-around next'
+    alt-p = 'workspace --wrap-around prev'
+
+    # --- Service mode (reload / reset / float) --------------------------------
+    shift-cmd-semicolon = 'mode service'
+
+# ==============================================================================
+# Service mode — one-shot maintenance actions, then back to main
+# ==============================================================================
+[mode.service.binding]
+    esc       = ['reload-config', 'mode main']
+    r         = ['flatten-workspace-tree', 'mode main']        # reset layout (~ rotate/rebuild)
+    f         = ['layout floating tiling', 'mode main']         # toggle float on focused window
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    # Merge the focused window into its neighbour (yabai-style tree surgery).
+    shift-cmd-h = ['join-with left', 'mode main']
+    shift-cmd-j = ['join-with down', 'mode main']
+    shift-cmd-k = ['join-with up', 'mode main']
+    shift-cmd-l = ['join-with right', 'mode main']
+
+# ==============================================================================
+# Auto-float / ignore apps  (yabai: rule --add ... manage=off)
+# AeroSpace can't "unmanage" like yabai; instead we force these to float so the
+# tiler leaves them alone. Matched by bundle id where known, else by name.
+# ==============================================================================
+
+# -- From your yabai ignore list --
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'   # System Settings / Preferences
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.archiveutility'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'          # floating, no workspace pin
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'               # ChatGPT
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'           # Messages
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'  # floating, no workspace pin
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.raycast.macos'
+run = ['layout floating']
+
+# -- Added per your request (Spotify + common utilities) --
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'             # floating, no workspace pin
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systemuiserver'
+run = ['layout floating']
+
+# -- Apps without stable/known bundle ids: match by name substring --
+[[on-window-detected]]
+if.app-name-regex-substring = 'Wally'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Pika'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'balenaEtcher'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Creative Cloud'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Logi Options'
+run = ['layout floating']
+
+# ==============================================================================
+# Auto-assign apps to a home workspace
+# When one of these apps opens, AeroSpace throws it to its workspace for you.
+# Edit the workspace number on each line to taste. Find any app's bundle id
+# with:  aerospace list-windows --all --format '%{app-name} | %{app-bundle-id}'
+# ==============================================================================
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'          # Ghostty terminal -> ws 1 (tiling)
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'            # Firefox -> ws 2 (tiling)
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'                # floating, no workspace pin
+run = ['layout floating']
+
+# Obsidian: floating (like the comms apps), not pinned to any workspace.
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['layout floating']
