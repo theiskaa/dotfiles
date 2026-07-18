@@ -264,7 +264,7 @@ if vim.lsp.document_color and vim.lsp.document_color.enable then
 		callback = function(args)
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
 			if client and client.name == "dartls" and client:supports_method("textDocument/documentColor") then
-				vim.lsp.document_color.enable(true, args.buf, { style = "background" })
+				vim.lsp.document_color.enable(true, { bufnr = args.buf }, { style = "background" })
 			end
 		end,
 	})
