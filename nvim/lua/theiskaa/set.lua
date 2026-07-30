@@ -43,6 +43,7 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.wo.cursorline = true
 vim.wo.cursorcolumn = true
+vim.opt.showtabline = 0 -- Never show a tabline (no buffer/tab bar)
 
 -- Beautiful text rendering (like Helix)
 -- Conceal settings for better text display

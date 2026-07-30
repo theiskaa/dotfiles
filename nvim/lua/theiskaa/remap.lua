@@ -42,6 +42,18 @@ vim.keymap.set("n", "<c-j>", "<c-w>j", { silent = true, desc = "Move to window b
 vim.keymap.set("n", "<c-k>", "<c-w>k", { silent = true, desc = "Move to window above" })
 vim.keymap.set("n", "<c-h>", "<c-w>h", { silent = true, desc = "Move to left window" })
 
+-- Buffer navigation (previously provided by bufferline.nvim)
+vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { silent = true, desc = "Prev buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "[b", "<cmd>bprevious<CR>", { silent = true, desc = "Prev buffer" })
+vim.keymap.set("n", "]b", "<cmd>bnext<CR>", { silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bd", function()
+	Snacks.bufdelete()
+end, { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>bo", function()
+	Snacks.bufdelete.other()
+end, { desc = "Delete other buffers" })
+
 -- Split management
 vim.keymap.set("n", "fsv", ":vs<CR>", { silent = true, desc = "Split vertically" })
 vim.keymap.set("n", "fsh", ":split<CR>", { silent = true, desc = "Split horizontally" })
