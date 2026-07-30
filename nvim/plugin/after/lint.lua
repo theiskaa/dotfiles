@@ -42,6 +42,12 @@ local opts = {
 				}, { path = ctx.dirname, upward = true })[1] ~= nil
 			end,
 		},
+		-- markdownlint-cli2 lints over stdin, so it can't reliably discover a
+		-- config file based on the buffer's path. Force it to always use our
+		-- config instead, which disables the noisy MD013/MD041 rules.
+		["markdownlint-cli2"] = {
+			args = { "--config", vim.fn.stdpath("config") .. "/.markdownlint-cli2.jsonc", "-" },
+		},
 	},
 }
 

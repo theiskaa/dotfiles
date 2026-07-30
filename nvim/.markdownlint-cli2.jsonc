@@ -1,0 +1,6 @@
+{
+	"config": {
+		"MD013": false, // line-length
+		"MD041": false  // first-line-heading
+	}
+}
