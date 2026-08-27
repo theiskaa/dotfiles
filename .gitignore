@@ -18,3 +18,12 @@ zed/
 yarn
 
 .DS_Store
+
+# tool state / receipts / logs
+cargo-dist/
+uv/
+herdr/
+bookokrat/*.bak
+
+# credentials
+claude-seo/google-api.json
