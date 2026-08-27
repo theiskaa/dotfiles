@@ -5,7 +5,7 @@ macos-titlebar-style = hidden
 background-opacity = 1
 background-blur = 15
 
-theme = "hybrid"
+theme = "Flexoki Dark"
 # theme = "hybrid" # Soft Light Dark
 # theme = "flexoki-dark" # Soft Dark
 # theme = "cga" # Dark
