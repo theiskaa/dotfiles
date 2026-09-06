@@ -29,6 +29,30 @@ on-mode-changed = []
 after-startup-command = []
 
 # ==============================================================================
+# Monitor assignment  (optional external display)
+# ==============================================================================
+# First matching pattern wins; if none match, the workspace falls back to the
+# main monitor. So:
+#   * DELL attached  -> 'secondary' matches -> workspaces 1-9 all live there.
+#   * laptop only    -> nothing matches     -> workspaces 1-9 fall back to main.
+# The '^dell' entry pins it by name so this still works if macOS ever makes the
+# DELL the main display (in which case 'secondary' would point at the laptop).
+# Workspace 10 is the scratch space AeroSpace parks on the built-in screen while
+# the DELL is attached — it is deliberately NOT persistent, so it disappears the
+# moment the monitor is unplugged.
+[workspace-to-monitor-force-assignment]
+1  = ['^dell', 'secondary', 'main']
+2  = ['^dell', 'secondary', 'main']
+3  = ['^dell', 'secondary', 'main']
+4  = ['^dell', 'secondary', 'main']
+5  = ['^dell', 'secondary', 'main']
+6  = ['^dell', 'secondary', 'main']
+7  = ['^dell', 'secondary', 'main']
+8  = ['^dell', 'secondary', 'main']
+9  = ['^dell', 'secondary', 'main']
+10 = 'main'
+
+# ==============================================================================
 # Main bindings
 # ==============================================================================
 [mode.main.binding]
@@ -88,6 +112,7 @@ after-startup-command = []
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'   # scratch space on the laptop screen
 
     alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
     alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
@@ -98,6 +123,7 @@ after-startup-command = []
     alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
     alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
     alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+    alt-shift-0 = ['move-node-to-workspace 10', 'workspace 10']
 
     # Cycle to the next/previous non-empty workspace without leaving home row.
     alt-n = 'workspace --wrap-around next'
@@ -172,6 +198,10 @@ run = ['layout floating']
 if.app-id = 'net.whatsapp.WhatsApp'
 run = ['layout floating']
 
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'      # Slack
+# run = ['layout floating']
+
 [[on-window-detected]]
 if.app-id = 'org.whispersystems.signal-desktop'  # floating, no workspace pin
 run = ['layout floating']
@@ -234,10 +264,13 @@ if.app-id = 'org.mozilla.firefox'            # Firefox -> ws 2 (tiling)
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
+if.app-id = 'net.imput.helium'               # Helium -> ws 2 (tiling)
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
 if.app-id = 'com.hnc.Discord'                # floating, no workspace pin
 run = ['layout floating']
 
-# Obsidian: floating (like the comms apps), not pinned to any workspace.
-[[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = ['layout floating']
+# [[on-window-detected]]
+# if.app-id = 'md.obsidian'
+# run = ['layout floating']
