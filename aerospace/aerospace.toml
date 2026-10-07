@@ -18,7 +18,7 @@ key-mapping.preset = 'qwerty'
 gaps.inner.horizontal = 0
 gaps.inner.vertical   = 0
 gaps.outer.left       = 0
-gaps.outer.bottom     = 0
+gaps.outer.bottom     = 40
 gaps.outer.top        = 0
 gaps.outer.right      = 0
 
@@ -198,9 +198,9 @@ run = ['layout floating']
 if.app-id = 'net.whatsapp.WhatsApp'
 run = ['layout floating']
 
-# [[on-window-detected]]
-# if.app-id = 'com.tinyspeck.slackmacgap'      # Slack
-# run = ['layout floating']
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'      # Slack
+run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = 'org.whispersystems.signal-desktop'  # floating, no workspace pin
@@ -213,6 +213,10 @@ run = ['layout floating']
 # -- Added per your request (Spotify + common utilities) --
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'             # floating, no workspace pin
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.insanearts.opie'            # floating, no workspace pin
 run = ['layout floating']
 
 [[on-window-detected]]
@@ -271,6 +275,6 @@ run = ['move-node-to-workspace 2']
 if.app-id = 'com.hnc.Discord'                # floating, no workspace pin
 run = ['layout floating']
 
-# [[on-window-detected]]
-# if.app-id = 'md.obsidian'
-# run = ['layout floating']
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['layout floating']

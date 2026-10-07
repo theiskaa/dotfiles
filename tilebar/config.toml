@@ -1,0 +1,212 @@
+schema_version = 1
+
+[appearance]
+appearance_mode = "auto"
+bar_background = "glass"
+bar_position = "bottom"
+palette = "onyx"
+tile_background = false
+tile_spacing = 4
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 1
+id = "tilebar-00000000-0000-0000-0000-000000000900"
+kind = "tilebar"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 0
+zone = "left"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 4
+id = "workspaces-6294F294-A65C-4437-936E-4D751BFC9D8E"
+kind = "workspaces"
+settings_revision = 21
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 1
+zone = "left"
+
+[tiles.settings]
+backend = "aerospace"
+instant_switching = true
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 1
+id = "agent_monitor-EF88F54E-817E-4B96-9C8F-B75154AD87DD"
+kind = "agent_monitor"
+settings_revision = 4
+
+[tiles.placement]
+display = "main"
+is_enabled = false
+order = 0
+zone = "right"
+
+[tiles.settings]
+notch_background = "system"
+surface = "menu_bar"
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 4
+id = "now_playing-D76E652E-E151-47A2-B052-011BF61F6377"
+kind = "now_playing"
+settings_revision = 23
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 0
+zone = "right"
+
+[tiles.settings]
+bar_style = "artwork"
+hides_after_paused_minutes = 8
+max_title_width = 100
+notch_background = "system"
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 2
+id = "codex-B4F8C3E6-51D3-4241-A3C7-382CE9DDEE15"
+kind = "codex"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 1
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 2
+id = "claude_code-4B286E4B-BD86-4B1C-950A-0F79A3500C3A"
+kind = "claude_code"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 2
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 1
+id = "cpu_memory-8B86EF5A-1D74-4DE3-9700-D930DF216DF0"
+kind = "cpu_memory"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 3
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 1
+id = "pomodoro-537A6CD6-80D6-480E-8E30-1406DF04E9C7"
+kind = "pomodoro"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = false
+order = 6
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 3
+id = "clock-8E970DA4-1E92-4564-973E-5926595DD3CD"
+kind = "clock"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = true
+order = 4
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 2
+id = "battery-149695EC-B558-4908-9F88-E0BB5A91BF69"
+kind = "battery"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = false
+order = 4
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 3
+id = "network-9288C501-3313-4F2A-B727-FD9490AD7E19"
+kind = "network"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = false
+order = 5
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 1
+id = "volume-1880762D-2D84-44B0-A43F-A65DA8C0E710"
+kind = "volume"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = false
+order = 3
+zone = "right"
+
+[tiles.settings]
+
+[[tiles]]
+acknowledged_configuration_notices = []
+configuration_schema_version = 1
+id = "keyboard_layout-A4D31D49-5990-405E-BA91-5482E0AA0211"
+kind = "keyboard_layout"
+settings_revision = 0
+
+[tiles.placement]
+display = "main"
+is_enabled = false
+order = 0
+zone = "right"
+
+[tiles.settings]

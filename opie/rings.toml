@@ -1,0 +1,68 @@
+# Opie rings. Edit this file and restart Opie.
+#
+# A ring holds 1 to 8 slices. A slice names a saved action:
+#   { action = "dark-mode" }
+# or holds up to 8 children, reached by flicking further outward:
+#   { children = [ { action = "sleep-mac" } ] }
+#
+# Record a binding in Opie Settings. "fn" and "option-space" remain valid
+# names for hand-edited files. A binding with no ring passes through.
+#
+# A slice holding a switch shows a dot: filled when on, an outline when
+# off. The ring appears at once and the dots fill in as the reads answer.
+
+app-ring-binding = { key-code = 58, modifiers = [], is-modifier = true, label = "⌥" }
+[[ring]]
+symbol = "aqi.low"
+name = "Main"
+id = "custom.starter"
+binding = { key-code = 58, modifiers = [], is-modifier = true, label = "⌥" }
+slices = [
+  { action = "choose-keyboard-language-5", id = "7B730974-7F12-425E-8C45-715866382716"},
+  {action = "dark-mode", id = "92F1482A-1386-4999-9787-443D5937427A"},
+  {action = "open-app", id = "72C4AAEB-A96D-41D0-B398-E080A31FD4DF", tint = "#3A54BF"},
+  {action = "open-app-13", id = "07669E26-9343-4A6C-9ADC-60D3F2EA58C8", tint = "#E14575"},
+  {action = "open-app-3", id = "BC80880F-8269-468E-8383-F8BAD7676B73", tint = "#39D954"},
+  {action = "open-app-5", id = "84AA015D-C0D0-4435-B73E-524CBF24CFDB", tint = "#00BF43"},
+  {action = "open-app-2", id = "EDE6DBEB-D6C4-4B23-83A4-F212E376344E", tint = "#2546BF"},
+  {action = "script.show-env", id = "F969FD6E-2B70-47DD-B8B8-60224C583A02"},
+]
+[[ring]]
+id = "1CE08FB2-6B57-4023-99FC-62773E69A939"
+app = "com.apple.dt.Xcode"
+enabled = false
+name = "Xcode"
+slices = [{catalog-app = "com.apple.dt.Xcode", catalog-entry = "product.run", id = "7373525D-1455-4709-8DA4-34797BCCBD04", name = "Run"}, {tint = "#6BC7A0", catalog-app = "com.apple.dt.Xcode", catalog-entry = "product.build", id = "5E18482A-7BDA-42B3-891E-2DD236F5C6CA", name = "Build"}, {catalog-app = "com.apple.dt.Xcode", catalog-entry = "product.test", id = "AEE05081-448D-4CE5-9D0A-7DEB886CDF65", name = "Test"}, {catalog-app = "com.apple.dt.Xcode", catalog-entry = "product.stop", id = "1A747AD8-1698-4917-B0B4-64EF1896A91D", name = "Stop"}, {catalog-app = "com.apple.dt.Xcode", catalog-entry = "file.open-quickly", id = "39129829-9D7F-474F-9E98-4713175BABF3", name = "Open Quickly"}, {catalog-app = "com.apple.dt.Xcode", catalog-entry = "navigate.jump-to-definition", id = "7A103417-0B01-4748-BDA1-508DC64735EC", name = "Jump to Definition"}, {catalog-app = "com.apple.dt.Xcode", catalog-entry = "find.find-in-workspace", id = "7F1340E3-1A9D-4CFD-AFC8-CB84DDC04FD5", name = "Find in Workspace"}, {catalog-app = "com.apple.dt.Xcode", catalog-entry = "view.navigators.issues", id = "39627465-27AC-4118-B69A-FEA54695DBFA", name = "Issues"}]
+[[ring]]
+record-style = "frost"
+binding = { key-code = 63, modifiers = [], is-modifier = true, label = "fn" }
+id = "dedicated.media"
+dedicated = "media"
+name = "Media"
+slices = [
+  {action = "toggle-shuffle", id = "A58FD8D0-6673-4DA4-A520-F4742EBE7A8C"},
+  {action = "play-previous-track", id = "5A368CA9-BADC-43C4-B544-824B88B33B4F"},
+  {action = "toggle-playback", id = "F48202E6-B186-4AD7-B562-F5F6806744C6"},
+  {action = "play-next-track", id = "D9FA53BA-FBB8-49CA-B10C-B5A154B3159E"},
+  {action = "toggle-song-loop", id = "6A8E2F18-3675-4299-9F98-81FB613D25AD"},
+]
+
+[[ring]]
+id = "DD7E743F-1D56-42C7-89F9-3D1E186FDFF9"
+app = "net.imput.helium"
+enabled = true
+name = "Helium"
+slices = [
+  {action = "open-app-12", id = "84F3BC9D-382E-4D3E-B1E6-DEB5021362A7", tint = "#117FEC"},
+  {action = "keystroke.save-screen", id = "474CE7C1-B698-4AEF-9FCA-B5580A58473A"},
+]
+
+[[ring]]
+id = "custom.something"
+name = "Actions"
+binding = { key-code = 50, modifiers = [], is-modifier = false, label = "`" }
+slices = [
+  {action = "dark-mode", id = "2D580D18-C228-4D7A-BC10-F7C98550802E"},
+  {action = "toggle-hide-windows", id = "9D2CF216-6593-46A6-B5B0-1130C2580F76"},
+  {action = "open-app-12", id = "66E03883-CE98-4CDA-A60B-A5C64425FA45", tint = "#117FEC"},
+]

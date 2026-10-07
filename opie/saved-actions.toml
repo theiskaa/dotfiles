@@ -1,0 +1,448 @@
+# Opie saved actions. Edit this file and restart Opie.
+#
+# A saved action names an action Opie ships:
+#   from = "toggle-dark-mode"
+# or carries a script you wrote yourself:
+#   script = { shell = "bash", body = "..." }
+#
+# A script's input can read the world at the moment the slice fires
+# instead of holding a fixed value:
+#   inputs.query = { context = "selected-text" }
+# Contexts: "clipboard", "finder-selection", "frontmost-app",
+# "frontmost-document", "selected-text".
+#
+# The id is what a ring slice points at. Keep it stable.
+
+[[saved-action]]
+id = "dark-mode"
+name = "Dark Mode"
+from = "toggle-dark-mode"
+
+[[saved-action]]
+id = "hidden-files"
+name = "Hidden Files"
+from = "toggle-hidden-files"
+
+[[saved-action]]
+id = "keep-awake"
+name = "Keep Awake"
+from = "toggle-keep-awake"
+
+[[saved-action]]
+id = "night-shift"
+name = "Night Shift"
+from = "toggle-night-shift"
+
+[[saved-action]]
+id = "lock-screen"
+name = "Lock Screen"
+from = "lock-screen"
+
+[[saved-action]]
+id = "sleep-mac"
+name = "Sleep"
+from = "sleep-mac"
+
+[[saved-action]]
+id = "empty-clipboard"
+name = "Empty Clipboard"
+from = "empty-clipboard"
+
+# This one is a script, and its input reads the world when it fires: it
+# searches whatever text you have selected. With nothing selected it
+# fails and says so.
+[[saved-action]]
+symbol = "command.square"
+id = "search-selection"
+name = "Search the Selection"
+script = { shell = "bash", body = 'open "https://www.google.com/search?q=$query"' }
+inputs.query = { context = "selected-text" }
+
+[[saved-action]]
+from = "fix-pdf-text"
+id = "fix-pdf-text"
+name = "Fix text copied from a PDF"
+symbol = "text.alignleft"
+
+[[saved-action]]
+from = "choose-keyboard-language"
+id = "choose-keyboard-language"
+name = "Keyboard language"
+symbol = "globe"
+
+[[saved-action]]
+from = "run-shortcut"
+id = "run-shortcut"
+inputs = { shortcut = { value = "3E603EDD-0F27-495A-AF69-8900BEA1E65A" } }
+name = "Show Screenshots"
+symbol = "bolt"
+
+[[saved-action]]
+from = "run-shortcut"
+id = "run-shortcut-2"
+inputs = { shortcut = { value = "6CE6291E-A0AD-4634-BEEC-23CC2AB85B6A" } }
+name = "Start Pomodoro"
+symbol = "bolt"
+
+[[saved-action]]
+from = "run-shortcut"
+id = "run-shortcut-3"
+inputs = { shortcut = { value = "4D99C6FB-88F5-464B-8A9A-C24AA3D1D15F" } }
+name = "Opie Test \"q\" $(date) ქ"
+symbol = "bolt"
+
+[[saved-action]]
+from = "run-shortcut"
+id = "run-shortcut-4"
+inputs = { shortcut = { value = "38317BAC-370B-400A-BB70-A7C21B7CF942" } }
+name = "Shazam shortcut"
+symbol = "bolt"
+
+[[saved-action]]
+from = "run-shortcut"
+id = "run-shortcut-5"
+inputs = { shortcut = { value = "0A44B8C0-1D77-49EF-AD5E-D59B527E4BA9" } }
+name = "Text Last Image"
+symbol = "bolt"
+
+[[saved-action]]
+from = "switch-keyboard-language"
+id = "switch-keyboard-language"
+name = "Next keyboard language"
+symbol = "keyboard"
+
+[[saved-action]]
+from = "choose-keyboard-language"
+id = "choose-keyboard-language-2"
+inputs = { languages = { value = "com.apple.keylayout.US" } }
+name = "Keyboard languages"
+symbol = "globe"
+
+[[saved-action]]
+from = "choose-keyboard-language"
+id = "choose-keyboard-language-3"
+inputs = { languages = { value = "com.apple.keylayout.US,com.apple.keylayout.Georgian-QWERTY" } }
+name = "Keyboard languages"
+symbol = "globe"
+
+[[saved-action]]
+from = "choose-keyboard-language"
+id = "choose-keyboard-language-4"
+inputs = { languages = { value = "com.apple.keylayout.US,com.apple.keylayout.Georgian-QWERTY,com.apple.keylayout.Turkish-QWERTY-PC" } }
+name = "Keyboard languages"
+symbol = "globe"
+
+[[saved-action]]
+from = "choose-keyboard-language"
+id = "choose-keyboard-language-5"
+inputs = { languages = { value = "com.apple.keylayout.US,com.apple.keylayout.Georgian-QWERTY,com.apple.keylayout.Turkish-QWERTY-PC,com.apple.keylayout.Russian-Phonetic" } }
+name = "Keyboard languages"
+symbol = "globe"
+
+[[saved-action]]
+from = "choose-keyboard-language"
+id = "choose-keyboard-language-6"
+inputs = { languages = { value = "com.apple.keylayout.Georgian-QWERTY,com.apple.keylayout.Turkish-QWERTY-PC,com.apple.keylayout.Russian-Phonetic" } }
+name = "Keyboard languages"
+symbol = "globe"
+
+[[saved-action]]
+from = "run-shortcut"
+id = "run-shortcut-6"
+inputs = { shortcut = { value = "0A44B8C0-1D77-49EF-AD5E-D59B527E4BA9" } }
+name = "Text Last Image"
+symbol = "waveform.badge.exclamationmark"
+
+[[saved-action]]
+id = "keystroke.force-quit"
+name = "Open Force Quit"
+symbol = "exclamationmark.octagon"
+from = "send-keystroke"
+inputs = { key-code = { value = "53" }, modifiers = { value = "option,command" } }
+
+[[saved-action]]
+id = "keystroke.screenshot-tools"
+name = "Screenshot & Recording Tools"
+symbol = "camera.viewfinder"
+from = "send-keystroke"
+inputs = { key-code = { value = "23" }, modifiers = { value = "shift,command" } }
+
+[[saved-action]]
+id = "keystroke.copy-screen"
+name = "Copy Screen to Clipboard"
+symbol = "rectangle.on.rectangle"
+from = "send-keystroke"
+inputs = { key-code = { value = "20" }, modifiers = { value = "control,shift,command" } }
+
+[[saved-action]]
+id = "keystroke.copy-area"
+name = "Copy Selected Area to Clipboard"
+symbol = "viewfinder"
+from = "send-keystroke"
+inputs = { key-code = { value = "21" }, modifiers = { value = "control,shift,command" } }
+
+[[saved-action]]
+id = "keystroke.previous-desktop"
+name = "Previous Desktop"
+symbol = "arrow.left"
+from = "send-keystroke"
+inputs = { key-code = { value = "123" }, modifiers = { value = "control" } }
+
+[[saved-action]]
+id = "keystroke.next-desktop"
+name = "Next Desktop"
+symbol = "arrow.right"
+from = "send-keystroke"
+inputs = { key-code = { value = "124" }, modifiers = { value = "control" } }
+
+[[saved-action]]
+id = "keystroke.emoji-symbols"
+name = "Emoji & Symbols"
+symbol = "face.smiling"
+from = "send-keystroke"
+inputs = { key-code = { value = "49" }, modifiers = { value = "control,command" } }
+
+[[saved-action]]
+id = "keystroke.accessibility-shortcuts"
+name = "Accessibility Shortcuts"
+symbol = "accessibility"
+from = "send-keystroke"
+inputs = { key-code = { value = "96" }, modifiers = { value = "option,command" } }
+
+[[saved-action]]
+id = "keystroke.save-screen"
+name = "Save Full Screenshot"
+symbol = "camera"
+from = "send-keystroke"
+inputs = { key-code = { value = "20" }, modifiers = { value = "shift,command" } }
+
+[[saved-action]]
+id = "keystroke.save-area"
+name = "Save Selected Area Screenshot"
+symbol = "crop"
+from = "send-keystroke"
+inputs = { key-code = { value = "21" }, modifiers = { value = "shift,command" } }
+
+[[saved-action]]
+id = "run-shortcut-7"
+name = "Shazam shortcut"
+symbol = "music.note"
+from = "run-shortcut"
+inputs = { shortcut = { value = "38317BAC-370B-400A-BB70-A7C21B7CF942" } }
+
+[[saved-action]]
+id = "sleep-displays"
+name = "Sleep Displays"
+symbol = "display"
+from = "sleep-displays"
+
+[[saved-action]]
+id = "open-app"
+name = "Helium"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "net.imput.helium" } }
+
+[[saved-action]]
+id = "open-app-2"
+name = "Ghostty"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.mitchellh.ghostty" } }
+
+[[saved-action]]
+id = "open-app-3"
+name = "Messages"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.MobileSMS" } }
+
+[[saved-action]]
+id = "open-app-4"
+name = "Obsidian"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "md.obsidian" } }
+
+[[saved-action]]
+id = "open-app-5"
+name = "Spotify"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.spotify.client" } }
+
+[[saved-action]]
+id = "toggle-shuffle"
+name = "Shuffle"
+from = "toggle-shuffle"
+
+[[saved-action]]
+id = "play-previous-track"
+name = "Previous"
+from = "play-previous-track"
+
+[[saved-action]]
+id = "toggle-playback"
+name = "Play/Pause"
+from = "toggle-playback"
+
+[[saved-action]]
+id = "play-next-track"
+name = "Next"
+from = "play-next-track"
+
+[[saved-action]]
+id = "toggle-song-loop"
+name = "Loop"
+from = "toggle-song-loop"
+
+[[saved-action]]
+id = "favorite-current-song"
+name = "Favorite"
+symbol = "heart.fill"
+from = "favorite-current-song"
+
+[[saved-action]]
+id = "open-app-6"
+name = "Activity Monitor"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.ActivityMonitor" } }
+
+[[saved-action]]
+id = "open-app-7"
+name = "AeroSpace"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "bobko.aerospace" } }
+
+[[saved-action]]
+id = "open-app-8"
+name = "Apps"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.apps.launcher" } }
+
+[[saved-action]]
+id = "open-app-9"
+name = "Audio MIDI Setup"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.audio.AudioMIDISetup" } }
+
+[[saved-action]]
+id = "open-app-10"
+name = "Bluetooth File Exchange"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.BluetoothFileExchange" } }
+
+[[saved-action]]
+id = "open-app-11"
+name = "Books"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.iBooksX" } }
+
+[[saved-action]]
+id = "open-app-12"
+name = "App Store"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.AppStore" } }
+
+[[saved-action]]
+id = "open-app-13"
+name = "Slack"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.tinyspeck.slackmacgap" } }
+
+[[saved-action]]
+id = "convert-file"
+name = "Convert"
+symbol = "arrow.triangle.2.circlepath"
+from = "convert-file"
+
+[[saved-action]]
+id = "toggle-desktop-icons"
+name = "Toggle Desktop Icons"
+symbol = "macwindow.on.rectangle"
+from = "toggle-desktop-icons"
+
+[[saved-action]]
+id = "open-app-14"
+name = "Claude"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.anthropic.claudefordesktop" } }
+
+[[saved-action]]
+id = "open-app-15"
+name = "Docker"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.docker.docker" } }
+
+[[saved-action]]
+id = "keystroke.b44a1a8f-e9dd-4c8b-b8ae-048442a52515"
+name = "Force Quit"
+symbol = "aqi.medium"
+from = "send-keystroke"
+inputs = { key-code = { value = "12" }, modifiers = { value = "command" } }
+# ---- Script try-outs added 2026-10-04. Delete this block when done. ----
+
+# Proves the environment: writes what the Script can see and opens it.
+[[saved-action]]
+id = "script.show-env"
+name = "Show Script Env"
+symbol = "terminal"
+script = { shell = "bash", body = '''
+out="$TMPDIR/opie-script-env.txt"
+{
+  echo "shell: $BASH_VERSION, cwd: $(pwd)"
+  echo "PATH=$PATH"
+  echo
+  for t in brew node ffmpeg python3 docker; do
+    printf '%-8s %s\n' "$t" "$(command -v "$t" || echo 'not found')"
+  done
+  echo
+  env | grep '^OPIE_' || echo "no OPIE_ variables (none ticked)"
+} > "$out"
+open -e "$out"
+''' }
+
+# Reads the clipboard through a Context Source, writes it back in capitals.
+[[saved-action]]
+id = "script.shout-clipboard"
+name = "Shout Clipboard"
+symbol = "speaker.wave.3"
+script = { shell = "bash", body = "printf '%s' \"$OPIE_CLIPBOARD\" | tr '[:lower:]' '[:upper:]' | pbcopy" }
+inputs.OPIE_CLIPBOARD = { context = "clipboard" }
+
+# Fails on purpose, so you see the failure notification with the output tail.
+[[saved-action]]
+id = "script.fail"
+name = "Fail on Purpose"
+symbol = "xmark.octagon"
+script = { shell = "bash", body = "echo 'this is stderr' >&2; echo 'this is stdout'; exit 3" }
+
+[[saved-action]]
+id = "open-app-16"
+name = "Archive Utility"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.archiveutility" } }
+
+[[saved-action]]
+id = "open-app-17"
+name = "Automator"
+symbol = "macwindow"
+from = "open-app"
+inputs = { app = { value = "com.apple.Automator" } }
+
+[[saved-action]]
+id = "toggle-hide-windows"
+name = "Toggle Hide Windows"
+symbol = "macwindow.badge.plus"
+from = "toggle-hide-windows"

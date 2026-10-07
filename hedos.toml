@@ -1,0 +1,46 @@
+[models]
+watched_folders = []
+hf_cache_roots = []
+approved_network_runtimes = []
+approved_host_runtimes = [
+    "python:laya",
+    "python:zerank",
+]
+keep_warm = "five_minutes"
+eviction = "strict_single"
+ram_budget_mb = 0
+
+[models.approved_network_runtime_hashes]
+
+[models.approved_host_runtime_hashes]
+"python:laya" = "c9dd1d3cd48bb885154a15312ded941d5b6285a9f61fb9931e5ea7cac1140ab0"
+"python:zerank" = "4c58c60ab342717d103123f329e49dc12466090c4988f947fe3e4f09820bca13"
+
+[chat]
+default_model_id = ""
+default_system_prompt = ""
+show_stats = true
+send_with_enter = true
+default_bench = []
+
+[voice]
+default_voice = ""
+speed = 1.0
+auto_speak = false
+
+[gateway]
+enabled = false
+host = "127.0.0.1"
+port = 43367
+max_connections = 128
+max_concurrent_inference = 4
+
+[pull]
+max_concurrent = 2
+auto_resume = true
+partial_age_hours = 24
+retry_window_minutes = 120
+keep_ended = 20
+
+[advanced]
+job_history_limit = 50
