@@ -16,7 +16,7 @@ fi
 
 # Check Neovim version
 NVIM_VERSION=$(nvim --version | head -n1 | cut -d' ' -f2 | cut -d'v' -f2)
-REQUIRED_VERSION="0.8.0"
+REQUIRED_VERSION="0.12.0"
 
 if ! printf '%s\n%s\n' "$REQUIRED_VERSION" "$NVIM_VERSION" | sort -V -C; then
     echo "❌ Neovim version $NVIM_VERSION is too old. Required: $REQUIRED_VERSION+"
@@ -31,15 +31,7 @@ if ! command -v git &> /dev/null; then
     exit 1
 fi
 
-# Install packer.nvim if not present
-PACKER_PATH="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/pack/packer/start/packer.nvim"
-if [ ! -d "$PACKER_PATH" ]; then
-    echo "📦 Installing packer.nvim..."
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_PATH"
-    echo "✅ Packer installed"
-else
-    echo "✅ Packer already installed"
-fi
+# lazy.nvim bootstraps itself on first launch (lua/theiskaa/lazy.lua).
 
 # Check for Node.js (needed for some LSP servers)
 if command -v node &> /dev/null; then
@@ -64,7 +56,9 @@ check_tool() {
 check_tool "rg" "Install ripgrep for better search"
 check_tool "fd" "Install fd for better file finding"
 check_tool "make" "Install make for compiling"
-check_tool "gcc" "Install gcc for compiling"
+check_tool "cc" "Install a C compiler (Xcode CLT) for treesitter parsers"
+check_tool "tree-sitter" "Install tree-sitter-cli 0.25+ to build treesitter parsers"
+check_tool "lazygit" "Install lazygit for <leader>G"
 
 # Platform-specific checks
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -81,7 +75,7 @@ fi
 echo ""
 echo "🎯 Next steps:"
 echo "1. Open Neovim: nvim"
-echo "2. Run: :PackerSync"
+echo "2. Wait for lazy.nvim, Mason and treesitter to finish installing"
 echo "3. Restart Neovim"
 echo "4. Run: :checkhealth"
 echo ""

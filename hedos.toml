@@ -5,6 +5,8 @@ approved_network_runtimes = []
 approved_host_runtimes = [
     "python:laya",
     "python:zerank",
+    "cli:tessera",
+    "python:yue2",
 ]
 keep_warm = "five_minutes"
 eviction = "strict_single"
@@ -13,7 +15,9 @@ ram_budget_mb = 0
 [models.approved_network_runtime_hashes]
 
 [models.approved_host_runtime_hashes]
+"cli:tessera" = "fa5b70e5521d7df4fc8efa2f8c1c8f0688d44ae35c2295fb9511296b538679e2"
 "python:laya" = "c9dd1d3cd48bb885154a15312ded941d5b6285a9f61fb9931e5ea7cac1140ab0"
+"python:yue2" = "471307e8f4d7867287739da2786a7325fdb82d2150df08ff51e689517096302c"
 "python:zerank" = "4c58c60ab342717d103123f329e49dc12466090c4988f947fe3e4f09820bca13"
 
 [chat]
@@ -40,6 +44,7 @@ max_concurrent = 2
 auto_resume = true
 partial_age_hours = 24
 retry_window_minutes = 120
+register_timeout_seconds = 120
 keep_ended = 20
 
 [advanced]

@@ -1,0 +1,5 @@
+helper_uid = 505
+socket_path = "/Users/atlas/.atlas/helper/505.sock"
+identity_probe = "/Users/Shared/Atlas/atlas"
+input_socket = "/Users/atlas/.atlas/input/input.sock"
+output_dir = "/Users/theiskaa/Library/Application Support/Atlas/runs"

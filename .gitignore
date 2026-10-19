@@ -27,3 +27,6 @@ bookokrat/*.bak
 
 # credentials
 claude-seo/google-api.json
+
+# tmux plugins installed by TPM
+tmux/plugins/

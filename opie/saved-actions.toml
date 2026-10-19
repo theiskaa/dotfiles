@@ -446,3 +446,69 @@ id = "toggle-hide-windows"
 name = "Toggle Hide Windows"
 symbol = "macwindow.badge.plus"
 from = "toggle-hide-windows"
+
+[[saved-action]]
+id = "copy-file-path"
+name = "Copy full file path"
+symbol = "doc.on.doc"
+from = "copy-file-path"
+
+[[saved-action]]
+id = "copy-file-name"
+name = "Copy filename"
+symbol = "textformat.abc"
+from = "copy-file-name"
+
+[[saved-action]]
+id = "open-finder-folder-in-terminal"
+name = "Open this Finder folder in Terminal"
+symbol = "terminal"
+from = "open-finder-folder-in-terminal"
+
+[[saved-action]]
+id = "open-file-in-vscode"
+name = "Open the selected file in VS Code"
+symbol = "chevron.left.forwardslash.chevron.right"
+from = "open-file-in-vscode"
+
+[[saved-action]]
+id = "create-finder-folder"
+name = "New Folder"
+symbol = "folder.badge.plus"
+from = "create-finder-folder"
+
+[[saved-action]]
+id = "compress-finder-selection"
+name = "Compress"
+symbol = "doc.zipper"
+from = "compress-finder-selection"
+
+[[saved-action]]
+id = "show-finder-info"
+name = "Show Info"
+symbol = "info.circle"
+from = "show-finder-info"
+
+[[saved-action]]
+id = "open-claude-chat"
+name = "New Chat"
+symbol = "bubble.left.badge.plus"
+from = "open-claude-chat"
+
+[[saved-action]]
+id = "open-claude-chat-from-clipboard"
+name = "Chat from Clipboard"
+symbol = "doc.on.clipboard"
+from = "open-claude-chat-from-clipboard"
+
+[[saved-action]]
+id = "open-claude-code-session"
+name = "New Code Session"
+symbol = "chevron.left.forwardslash.chevron.right"
+from = "open-claude-code-session"
+
+[[saved-action]]
+id = "open-claude-cowork-session"
+name = "New Cowork Session"
+symbol = "rectangle.stack.badge.plus"
+from = "open-claude-cowork-session"

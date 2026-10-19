@@ -18,14 +18,14 @@ name = "Main"
 id = "custom.starter"
 binding = { key-code = 58, modifiers = [], is-modifier = true, label = "⌥" }
 slices = [
-  { action = "choose-keyboard-language-5", id = "7B730974-7F12-425E-8C45-715866382716"},
-  {action = "dark-mode", id = "92F1482A-1386-4999-9787-443D5937427A"},
+  {tint = "#6BC7A0",  action = "choose-keyboard-language-5", id = "7B730974-7F12-425E-8C45-715866382716"},
+  {tint = "#7FA8FF", action = "dark-mode", id = "92F1482A-1386-4999-9787-443D5937427A"},
   {action = "open-app", id = "72C4AAEB-A96D-41D0-B398-E080A31FD4DF", tint = "#3A54BF"},
   {action = "open-app-13", id = "07669E26-9343-4A6C-9ADC-60D3F2EA58C8", tint = "#E14575"},
   {action = "open-app-3", id = "BC80880F-8269-468E-8383-F8BAD7676B73", tint = "#39D954"},
   {action = "open-app-5", id = "84AA015D-C0D0-4435-B73E-524CBF24CFDB", tint = "#00BF43"},
   {action = "open-app-2", id = "EDE6DBEB-D6C4-4B23-83A4-F212E376344E", tint = "#2546BF"},
-  {action = "script.show-env", id = "F969FD6E-2B70-47DD-B8B8-60224C583A02"},
+  {tint = "#F2B35A", action = "convert-file", id = "A31F788E-7EF8-4594-B597-2037C394A91E"},
 ]
 [[ring]]
 id = "1CE08FB2-6B57-4023-99FC-62773E69A939"
@@ -48,21 +48,29 @@ slices = [
 ]
 
 [[ring]]
-id = "DD7E743F-1D56-42C7-89F9-3D1E186FDFF9"
-app = "net.imput.helium"
+id = "4BAEAC66-5C46-4D40-A7B6-53E67D2AC56D"
+app = "com.apple.finder"
 enabled = true
-name = "Helium"
+name = "Finder"
 slices = [
-  {action = "open-app-12", id = "84F3BC9D-382E-4D3E-B1E6-DEB5021362A7", tint = "#117FEC"},
-  {action = "keystroke.save-screen", id = "474CE7C1-B698-4AEF-9FCA-B5580A58473A"},
+  {action = "convert-file", id = "B9BDC74E-0548-4C78-BFE6-7713D15C9824"},
+  {action = "copy-file-path", id = "540449AD-FBD4-40D1-8E49-A1F689D481EE"},
+  {action = "copy-file-name", id = "86AFE7DB-8A11-469D-9C29-D19155CCA9C3"},
+  {action = "open-finder-folder-in-terminal", id = "4F051C8C-8D32-4F72-80DF-C52CC4BF3440"},
+  {action = "open-file-in-vscode", id = "A42F660B-FAC9-46E9-96A2-445562EBC884"},
+  {action = "create-finder-folder", id = "4349185C-8499-4697-915F-FA6C69CE07C8"},
+  {action = "compress-finder-selection", id = "C5F5CAF1-CD3C-40BF-A8F5-1CB56CDC3E4A"},
+  {action = "show-finder-info", id = "153E0A01-E1CC-4F24-9049-1D0FAC730813"},
 ]
 
 [[ring]]
-id = "custom.something"
-name = "Actions"
-binding = { key-code = 50, modifiers = [], is-modifier = false, label = "`" }
+id = "5DB046F7-F473-46BB-B4B7-E5126D4755D6"
+app = "com.anthropic.claudefordesktop"
+enabled = false
+name = "Claude"
 slices = [
-  {action = "dark-mode", id = "2D580D18-C228-4D7A-BC10-F7C98550802E"},
-  {action = "toggle-hide-windows", id = "9D2CF216-6593-46A6-B5B0-1130C2580F76"},
-  {action = "open-app-12", id = "66E03883-CE98-4CDA-A60B-A5C64425FA45", tint = "#117FEC"},
+  {action = "open-claude-chat", id = "29900B83-991A-401C-96C6-6CED190E26E6"},
+  {action = "open-claude-chat-from-clipboard", id = "7EFD5B73-7BCF-4014-BF12-0037392D443D"},
+  {action = "open-claude-code-session", id = "836A7E8D-C252-44DB-8161-31A45AE1503C"},
+  {action = "open-claude-cowork-session", id = "EB522700-72E1-4BDC-AF81-2115D6C8F987"},
 ]
