@@ -83,13 +83,6 @@ return {
 			{ "<leader><space>", pick("buffers"), desc = "[ ] Find existing buffers" },
 			{ "<leader>/", pick("lines"), desc = "[/] Fuzzily search in current buffer" },
 			{
-				"<leader>th",
-				function()
-					Snacks.picker.colorschemes()
-				end,
-				desc = "Pick colorscheme (live preview)",
-			},
-			{
 				"<leader>e",
 				function()
 					Snacks.explorer()

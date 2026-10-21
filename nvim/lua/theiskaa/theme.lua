@@ -30,10 +30,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = clear_backgrounds,
 })
 
-function M.set(color)
-	vim.cmd.colorscheme(color or "vesper")
+function M.set()
+	vim.cmd.colorscheme("catppuccin")
 end
-
-SetTheme = M.set
 
 return M
